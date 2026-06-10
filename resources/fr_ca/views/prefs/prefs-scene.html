@@ -1,0 +1,124 @@
+<div class="account-prefs">
+	<div class="palm-page-header">
+		<div class="palm-page-header-wrapper">              
+			<div class="icon appcatalog">
+			</div>         
+			<div class="title">Préférences et comptes</div>      
+		</div>
+	</div>
+	
+	<div class="palm-fullscreen palm-scrim" id="spinnerCont">
+		<div class="palm-fullscreen-cont">
+			<div id="spinner" class="spinner" x-mojo-element="Spinner"></div>	
+		</div>
+	</div>
+
+	<div class="palm-body-text" id="descriptionOB">
+		Un compte de fournisseur ou une carte de crédit est nécessaire pour acheter des articles.
+	</div>
+
+	<div class="palm-body-text" id="descriptionCC" style="display:none">
+		Une carte de crédit est exigée pour l’achat d’articles.
+	</div>
+
+	
+	<div class="palm-group" id="defaultGroup">  
+		<div class="palm-group-title">
+			Mode de paiement par défaut
+		</div>
+		<div id="paymentTypeList" class="palm-list" x-mojo-element="List"></div>
+	</div>
+
+  <div class="palm-group" id="carrierGroup">  
+		<div class="palm-group-title">
+			Compte du fournisseur
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single" id="addCarrierButton" x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper addAccount">
+					<div class="list-item-add-button">
+					</div>
+					<div class="title">
+						Ajouter le compte
+					</div>
+				</div>
+			</div>
+			<div class="palm-row single" id="currentCarrier"   style="display:none"  x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper">
+					<div class="palm-account-icon local left"></div>
+					<div class="accountDesc">
+                     	<div class="title">Compte du fournisseur</div>
+ 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="palm-group">  
+		<div class="palm-group-title">
+			Compte de carte de crédit
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single" id="addAccountButton" x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper addAccount">
+					<div class="list-item-add-button">
+                    </div>
+					<div class="title">
+						Ajouter le compte
+					</div>
+				</div>
+			</div>
+			<div class="palm-row single" id="currentAccount"   style="display:none"  x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper">
+					<div class="palm-account-icon local left"></div>
+					<div class="accountDesc">
+                     	<div class="title" id="userName"></div>
+                      	<div class="subtitle" id="creditCardTypeAndLast4digits"></div>
+ 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="palm-group">  
+		<div class="palm-group-title">
+			Le mot de passe est exigé
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single">
+				<div class="palm-row-wrapper" x-mojo-focus-highlight="true">
+					<div id="passwordReqSelector" x-mojo-element="ListSelector"></div>   
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="invoiceEmailContainer" style="display:none">
+        <div id="embargoedAddError" class="palm-inline-error" style="display:none">
+			<div class="error-message"> Le gouvernement des États-Unis interdit à HP de vous autoriser à utiliser cette adresse de courriel.</div>
+		</div>
+		<div id="emailNotValidError" class="palm-inline-error" style="display:none">
+			<div class="error-message">L’adresse de courriel doit être dans un format valide.</div>
+		</div>
+            
+		<div class="palm-group">  
+			<div class="palm-group-title">
+				Envoyer les reçus
+			</div>
+			
+				<div class="palm-list">
+					<div class='palm-row single'>                                                      
+							<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+									<div class="title"> 
+										<div id="invoiceEmail" x-mojo-element="TextField" ></div>
+						      		</div>
+						     </div>                                                                 
+					</div>
+				</div>
+				
+		</div>
+	</div>
+	
+	<!-- <div class="palm-body-text" x-mojo-loc="">
+		Enter your HP webOS Account password for the first purchase. Confirm each purchase thereafter.
+	</div> -->
+</div>

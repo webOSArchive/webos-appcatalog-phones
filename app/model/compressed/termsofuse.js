@@ -1,0 +1,1 @@
+var TermsOfUse={_TOSDate:"7th Aug 2009",isAccepted:function(){var a=(new Mojo.Model.Cookie("com.palm.app.findapps.terms")).get()||{};return a.termsOfUseAccepted==this._TOSDate},setAccepted:function(){var a=new Mojo.Model.Cookie("com.palm.app.findapps.terms");var b=a.get()||{};b.termsOfUseAccepted=this._TOSDate;a.put(b)}};

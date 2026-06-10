@@ -1,0 +1,52 @@
+<div class="palm-scene palm-hasheader has-search-bar-top app-catalog">
+	<div id="topFade" class="app-catalog-fade-top" x-mojo-scroll-fade="top"></div>
+        
+
+	<div class="palm-fullscreen" id="spinnerCont" style="display:none">
+		<div class="palm-fullscreen-cont">
+			<div id="spinner" class="spinner" x-mojo-element="Spinner"></div>
+		</div>
+	</div>
+
+	<div id="defaultSearchHeader" class="palm-page-header"></div>
+
+        <div id="synergySearchHeader" class="palm-page-header multi-line" style="display: none;">
+             <div class="palm-page-header-wrapper">
+				<div class="synergy-search-icon"><img id="synergySearchIcon" src="" /></div>
+                <div id="synergySearchTitle" class="title"></div>
+             </div>
+        </div>
+
+        <div id="searchBar" class="search-scene-header app-search-bar">
+            <div id="app-search-bar-inactive" class="app-search-bar-inactive" style="display: none;">
+                <img id="app-search-bar-icon" src="images/category-icons/home.png" alt="category type" />
+                <span id="app-search-bar-text" class="app-search-bar-text">Search Services</span>
+            </div>
+            <div id="app-search-bar-scrim" class="palm-scrim" style="display: none;"></div>
+            <div id="app-search-bar-active" class="app-search-bar-active" x-mojo-focus-highlight="true" style="display: none;">
+                <div id="in-fa-search-text" class="search-text" x-mojo-element="TextField"></div>
+                <div id="searchResultsModified" class="app-search-bar-button-active" x-mojo-touch-feedback="immediate"></div>
+            </div>
+        </div>
+
+	<div id="div-fa-search">
+            <div id="categorySelectorPlacementAnchor"></div>
+            <div id="categorySelector" class="category-selector truncating-text" style="display: none;">en todas las categorías</div>
+            <div id="category-selector-fade" style="display:none;"></div>
+            <div id="applist-scroller" style="width: 100%;" x-mojo-element="Scroller">
+                <div id="dv-fa-appslist" class="palm-list" x-mojo-element="List"></div>
+                <div class="palm-row single" style="padding-bottom: 3px;">
+                    <!-- This is a spacer.  Leave in place. -->
+                </div>
+            </div>
+            
+            <div class="palm-fullscreen-error" id="dv-fa-appslist-message" style="display:none;">
+                <div id="palm-fullscreen-cont" class="palm-fullscreen-cont">
+                    <div class="large-icon large-app-catalog"></div>
+                    <div class="fullscreen-message">No se encontró ninguna aplicación.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bottomFade" class="app-catalog-fade-bottom" x-mojo-scroll-fade="bottom"></div>
+</div>

@@ -1,0 +1,54 @@
+<div class="profile-settings">
+  	<div class="palm-page-header">
+		<div class="header-icon backup"></div>
+	    <div class="header-text">
+	     	Changer l’adresse de courriel
+	    </div>
+	</div>
+
+	<div id="editProfile">
+			
+		<div class="palm-body-text">
+			Entrez une adresse de courriel valide. Les reçus seront envoyés à cette adresse.
+		</div>
+            
+                <div id="emailNotSameError" class="palm-inline-error" style="display:none">
+                        <div class="error-message">Les deux adresses de courriel doivent être identiques.</div>
+                </div>
+
+                <div id="emailNotValidError" class="palm-inline-error" style="display:none">
+                        <div class="error-message">L’adresse de courriel doit être dans un format valide.</div>
+                </div>
+
+                <div id="embargoedAddError" class="palm-inline-error" style="display:none">
+                        <div class="error-message"> Le gouvernement des États-Unis interdit à HP de vous autoriser à utiliser cette adresse de courriel.</div>
+                </div>
+			
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Adresse de courriel</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row top'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="emailAddress1" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+				<div class='palm-row bottom'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="emailAddress2" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div>
+	
+		<div class="palm-button" id="okButton" x-mojo-touch-feedback="delayed">
+			OK
+		</div> 
+		
+	</div>	
+</div>

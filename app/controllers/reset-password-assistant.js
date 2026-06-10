@@ -1,0 +1,183 @@
+var ResetPasswordAssistant = Class.create(
+{
+	initialize: function(sceneAssistant, params)
+	{
+		this.sceneAssistant = sceneAssistant;
+		this.controller = sceneAssistant.controller;
+		this._params = params;
+    this.appMetrics = Mojo.Controller.getAppController().assistant.appMetrics;
+	},
+	
+	setup : function(widget) 
+	{
+    this.appMetrics.trackNewScene("reset_password");
+		this.widget = widget;
+		this.clearErrorMessages();
+		
+		this.acctPasswordAttr = {
+			hintText: $L("enter password"),
+			modelProperty: 'original',
+			autoFocus: true,
+			maxLength: 20,
+			enterSubmits: true,
+			focusMode:Mojo.Widget.focusSelectMode,
+			charsAllow: Utilities.Common.filterSpace.bind(this)
+		};
+		this.acctPasswordModel = {
+			'original' : ''
+		};
+
+		this.controller.setupWidget('newPassword', this.acctPasswordAttr, this.acctPasswordModel);
+				
+		this.verifyPasswordAttr = {
+			hintText: $L("confirm password"),
+			modelProperty: 'verify',
+			autoFocus: false,
+			maxLength: 20,
+			className: ' ',
+			changeOnKeyPress: true,
+			requiresEnterKey: true,
+			focusMode:Mojo.Widget.focusSelectMode,
+			charsAllow: Utilities.Common.filterSpace.bind(this)
+		};
+		this.verifyPasswordModel = {
+			'verify' : ''
+		};
+		
+		this.controller.setupWidget('confirmPassword', this.verifyPasswordAttr, this.verifyPasswordModel);	
+		
+		this.controller.get('newPassword').observe(Mojo.Event.propertyChange, this.passwordChanged.bind(this));
+		this.controller.get('confirmPassword').observe(Mojo.Event.propertyChange, this.verifyPasswordChanged.bind(this));
+		
+		this.buttonAttr = {
+			disabledProperty: 'disabled'
+		};
+		
+		this.buttonModel = {
+			disabled: true,
+			buttonLabel : $L('Done'),
+			buttonClass: 'palm-button'
+		};
+		
+		this.controller.setupWidget('submitResetPassword', this.buttonAttr, this.buttonModel);
+		this.controller.listen('submitResetPassword', Mojo.Event.tap, this.resetPassword.bindAsEventListener(this));
+	},
+	
+	clearErrorMessages: function() 
+	{
+		this.controller.get('mismatchMessage').hide();
+		this.controller.get('noPasswordMessage').hide();
+		this.controller.get('noConfirmMessage').hide();
+		this.controller.get('systemErrorMessage').hide();
+		this.controller.get('passwordLengthError').hide();
+	},
+	
+	
+	toggleDisabled: function() 
+	{
+       	if (this.acctPasswordModel.original.length > 0 && this.verifyPasswordModel.verify.length > 0) 
+		{
+		  	this.buttonModel.disabled = false;
+			this.controller.modelChanged(this.buttonModel);
+	   	} 
+	   	else 
+	   	{
+	   		this.buttonModel.disabled = true;
+			this.controller.modelChanged(this.buttonModel);
+	   	}
+    },
+	
+	passwordChanged: function (event) 
+	{
+		this.toggleDisabled();
+	},
+	
+	verifyPasswordChanged: function (event) 
+	{
+		this.toggleDisabled();
+		// If the password field has focus and Enter is pressed then simulate tapping on "next"
+		if (event && Mojo.Char.isEnterKey(event.originalEvent.keyCode)) 
+		{
+			// If the submit button is enabled then change password
+			if (this.buttonModel.disabled == false) 
+			{
+				if (this.resetPassword() === true)
+				{
+					this.controller.get('newPassword').mojo.focus.defer();
+				}
+				Event.stop(event);
+			} 
+		}
+	},
+	
+	resetPassword: function()
+	{
+		this.newPassword = this.acctPasswordModel.original;
+		this.confirmPassword = this.verifyPasswordModel.verify;
+		this.clearErrorMessages();
+		
+		this.controller.get('newPassword').mojo.focus.defer();
+		
+		if (this.newPassword == "" || this.newPassword == undefined) 
+		{
+			this.controller.get('noPasswordMessage').show();
+			return true;
+		}
+		else if ((this.newPassword.length < 6) || (this.newPassword.length > 20)) 
+		{
+			this.controller.get('passwordLengthError').show();
+			return true;
+		}
+		else if (this.confirmPassword == "" || this.confirmPassword == undefined) 
+		{
+			this.controller.get('noConfirmMessage').show();
+			return true;
+		}
+		else if (this.newPassword != this.confirmPassword) 
+		{
+			this.controller.get('mismatchMessage').show();
+			return true;
+		}
+		else if (Weave.Services.ConnectionManager.isOnline() === false) 
+		{
+			//Weave.Services.ConnectionManager.showConnectionError();
+		}
+		else 
+		{
+			Mojo.Log.info("AUTHING ACCOUNT", myProfile.email, myProfile.password, this.newPassword);
+			
+			this.buttonModel.disabled = true;
+			this.controller.modelChanged(this.buttonModel);
+			
+			var self = this;
+			Weave.Services.AccountServices.changePassword(this.newPassword.replace(/ /g, ''), myProfile.questionId, undefined, myProfile.idToken, true, function(status, response)
+			{
+				if (status && response.returnValue) 
+				{
+					Mojo.Log.info("changePassword successful: %o", $H(response));
+					myProfile.password = self.newPassword;
+					Preferences.setLoginTime();
+					self._params.onComplete(
+					{
+						passwordValid: true,
+						passwordChanged: true
+					});
+				}
+				else 
+				{
+					Mojo.Log.error("changePassword error = %o", $H(response));
+					if (Weave.Services.ConnectionManager.isOnline() === false || response.errorText === "No response") 
+					{
+						Mojo.Log.info("show connection error ---------------");
+						self.widget.mojo.close();
+						//Weave.Services.ConnectionManager.showConnectionError();
+					}
+					else 
+					{
+						self.controller.get('systemErrorMessage').show();
+					}
+				}
+			});
+		}
+	}
+});

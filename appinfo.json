@@ -1,0 +1,21 @@
+{
+	"title": "App Catalog",
+	"type": "web",
+	"main": "index.html",
+	"id": "com.palm.app.findapps",
+	"icon": "icon.png",
+	"splashicon": "icon-256x256.png",
+	"splashBackground":"images/splash-screenshot-default.png",  
+	"version": "3.0.23300",
+	"vendor": "HP",
+	"noWindow": true,
+	"keywords": ["Store"],
+	"removable": false,
+	"universalSearch":{
+						"search":{ 
+									"displayName": "HP App Catalog",
+									"url":"com.palm.app.findapps",
+									"launchParam":{"common":{"sceneType":"search","params":{"type":"query","search":"#{searchTerms}"}}}
+								}
+					}
+}

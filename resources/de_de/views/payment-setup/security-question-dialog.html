@@ -1,0 +1,24 @@
+<div id="palm-dialog-box-message" class="palm-dialog-content security-question">
+	<div id="title" class="dialog-title">
+		Kennwort zurücksetzen
+	</div>
+	<div class="palm-dialog-separator"></div>
+	<div id="questionText" class="dialog-message"></div>
+		<div class="textfield-group" x-mojo-focus-highlight="true">
+			<div class="title">
+				<div id="response" name="response" x-mojo-element="TextField"></div>
+			</div>
+		</div>
+
+	<div id="noResponseMessage" class="palm-inline-error" style="display:none">
+		<div class="error-message">Geben Sie eine Antwort ein.</div>
+	</div>
+
+	<div id="wrongResponse" class="palm-inline-error" style="display:none">
+		<div class="error-message">Antwort nicht richtig.</div>
+	</div>
+
+</div>
+<div class="palm-dialog-buttons">
+	<div x-mojo-element="Button" id="submitAnswer"></div>	
+</div>

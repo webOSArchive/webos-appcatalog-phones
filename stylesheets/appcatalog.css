@@ -1,0 +1,1871 @@
+/* Global First
+Copyright 2009 Palm, Inc.  All rights reserved.
+
+*/
+.app-catalog {
+	color: white;
+}
+
+body.palm-default:not(.prefs),
+body.wallpaper:not(.prefs) {                 
+	background-image: url(../images/ac-body-bg-notreviewed.png); 
+	background-image: url(../images/ac-body-bg-beta.png);
+  background: url(../images/ac-body-bg.png) fixed no-repeat; 
+}
+                           
+body.palm-default.notreviewed {
+	background: url(../images/ac-body-bg-notreviewed.png) fixed no-repeat;
+}                                                                      
+
+body.palm-default.beta {
+	background: url(../images/ac-body-bg-beta.png) fixed no-repeat;
+}                                                                      
+
+.app-catalog .scrim {
+	width: 320px;
+	height: 480px;
+	background: url(../images/background-scrim.png) center center no-repeat;	
+	position: fixed;
+	z-index: -1;
+	margin-top: -23px;
+}
+
+.app-catalog .scene-link {
+	width: 100%;
+	margin-top: 12px;
+	color: white;
+	text-align: center;
+	font-size: 24px;
+}
+
+.palm-menu-icon.bag { background-image: url(../images/menu-bag-icon.png); }
+
+.palm-list .palm-row .text-entry-container .status-icon.icon.right {
+	width:auto;
+	height: auto;
+}
+.palm-list .palm-row .text-entry-container .status-icon.icon.right .results {
+	text-align:center;
+	color: #FFFFFF;
+	font-size: 14px;
+	padding: 2px 0px 0px 0px;
+	border-width: 0px 15px;
+	-webkit-border-image: url(../images/black-circle.png) 0 30 0 30;
+	display:inline-block;
+}
+.palm-list .palm-row .text-entry-container .status-icon.icon.right .results-modified {
+	text-align:center;
+	color: #FFFFFF;
+	font-size: 14px;
+	padding: 2px 0px 0px 0px;
+	border-width: 0px 15px;
+	-webkit-border-image: url(../images/forward.png);
+	display:inline-block;
+}
+.palm-list .palm-row .text-entry-container .status-icon.icon.right .results .results-margin {
+	margin: 0px -5px;
+}
+
+
+/*list sections*/ 
+.app-catalog .palm-list-section-label .label {
+	color: #f7b516;
+	text-shadow: none;
+}
+.app-catalog .palm-list-section-label td.right {
+	background: url(../images/list-section-line.png) 12px left no-repeat;
+}
+
+.app-catalog .palm-list-section-label td.left {
+	background: url(../images/list-section-line.png) 12px right no-repeat;
+}
+
+/*Sponsor*/
+
+.app-catalog .sponsor-scroller {
+	color: white;	
+	height: 110px;
+	width: 100%;
+	-webkit-user-drag: none;
+	/*border: thin solid #FF0000;*/
+}
+
+.app-catalog .sponsor-scroller .loading {
+	width: 320px;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.app-catalog .sponsor {
+	white-space: nowrap;
+}
+                                              
+.popapps-loading .sponsored-app-container, 
+.app-catalog .sponsor .sponsored-app-container {
+	margin-top: 10px;
+	display: inline-block;
+	padding: 0px 10px;
+	width: 70px;
+	position:relative;                     
+}                                          
+.popapps-loading .sponsored-app-container {
+	height: 70px;
+}
+.sponsored-app-update-badge {
+	display:none;
+}
+.has-update .sponsored-app-update-badge {
+	display:block;
+	background:url(../images/update-badge.png) center center no-repeat;
+	position:absolute;
+	top:0px;
+	left:55px;
+	height:16px;
+	width:16px;
+}
+                                                           
+.popapps-loading .app-picture,
+.app-catalog .sponsor .sponsored-app-container .app-picture {
+	text-align: center;
+	height: 60px;
+	width: 60px;                     
+	background: url(../images/loading.png) center center no-repeat;
+}
+
+.app-catalog .sponsor .sponsored-app-container .app-rating {
+	text-align: center;
+	position: relative;
+	top: -4px;
+}
+
+.app-catalog .sponsor .sponsored-app-container .app-name {
+	font-size: 14px;
+	text-align: center;
+	width: 72px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+	top: -10px;
+	left: -6px;
+}
+
+
+
+
+
+
+.picture-scene {
+	background-color: black !important; 
+}
+
+.small-text-preview
+{
+	font-size:14px;
+}
+
+.fullimage-scroller {
+	margin: 0px;
+	-webkit-user-drag: none;
+	border: 0px;
+	padding: 0px;
+	background-color: black;
+}
+
+.creator-text {
+	font-size:14px;
+	width: 70%;
+	position: absolute;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	top: 0px;
+	left: 8px;
+	color: inherit;
+	white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.has-search-bar-top .palm-page-header {
+	background:none;
+	padding-bottom:0px;
+	margin-bottom:5px;
+	min-height: 53px;
+	-webkit-border-image:none;
+}
+
+#synergySearchHeader.palm-page-header {
+	 -webkit-border-image: url(../images/ac-page-header.png) 35 24 13 24 repeat stretch;
+}
+
+#synergySearchHeader.palm-page-header .title {
+	color: #fff;
+}
+
+.search-bar-top .filter-field-container {
+	/*position:relative;*/
+}
+.search-bar-top .filter-field-container-height {
+	height:59px;
+}
+.search-bar-top .search-field {
+	height:59px;
+	position:relative;
+}
+.search-bar-top input,
+.search-bar-top textarea {
+	border:none;
+	outline:none;
+}
+.search-bar-top .focused .palm-row .textfield-group .search-field input {
+	color:black !important;
+}
+.search-bar-top .icon.right.submit {
+	height: 42px;
+	width: 42px;
+	margin-right: -5px;
+	margin-top: 5px;
+	background: url(../images/btn-submit-search.png) left top no-repeat;
+}
+.search-bar-top .icon.right.submit.selected {
+    background-position: left bottom;
+}
+.search-bar-top .filter-field-container.focused {
+	-webkit-border-image: url(../images/filter-search-dark-focused-bg.png) 26 23 20 23 repeat repeat;
+}
+.search-bar-top .textfield-group {
+	-webkit-border-image: url(../images/framework/textfield-noshadow.png) 15 15 15 15 stretch stretch;
+}
+.search-bar-top .filter-field-container .results-count-container {height: 42px;
+	width: 42px;
+	margin-right: -5px;
+	margin-top: 5px;
+	background: url(../images/btn-submit-search.png) left top no-repeat;
+	position:relative;
+	float:right;
+	margin: 13px 3px 0px 0px;
+	line-height:52px;
+}
+.search-bar-top .filter-field-container.focused .results-count-container {
+	-webkit-border-image: url(../images/filter-field-pill-black.png) 11 11 11 11 repeat repeat;
+}
+.search-bar-top .filter-field-container.focused .results-count {
+	color:white;
+}
+
+
+.icon.search-result-app-icon,
+.icon.search-result-price-and-rating {
+	position:relative;
+	height: 44px;
+}
+.icon.search-result-price-and-rating {
+	width: inherit !important;
+	min-width:62px;
+	margin-top: 5px;
+}                           
+
+.loadingicon {
+	text-align: center;
+	height: 48px;
+	width: 48px;                     
+	background: url(../images/loading.png) center center no-repeat;
+}
+
+.search-result-price-and-rating {
+    color: #fff;
+}
+.search-result-price {
+	font-size:15px;
+	font-weight:bold;
+	text-align: right;
+}
+.search-result-price.free {
+	text-transform:uppercase;
+}
+.search-result-rating {
+	position:absolute;
+	right:-2px;
+	bottom:10px;	
+}
+.search-scene .palm-page-header {
+	margin-bottom:0px;
+}
+.palm-row-wrapper.padded {
+	padding:10px 15px 10px;
+	clear: both;
+}
+
+.search-result-details {
+	margin-left:50px;
+	width: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.palm-row .search-result-details .title,
+.palm-row .search-result-details .subtitle {
+	padding: 0px 10px;
+}
+
+.palm-row .search-result-details .subtitle {
+	color: #d5d5d5;
+}
+/*
+#detailsPage.synergy .palm-row-wrapper.padded {
+    background-image: none;
+	background-color: #e4e4e2;
+}
+ */                      
+.palm-list .details-header-version {
+	padding: 0px;                            
+	background: url(../images/ac-header-drawer.png) bottom left repeat-x;
+	font-size: 16px;
+	margin: 0px;                            
+	height: auto;
+	min-height: auto;
+}                                           
+
+body.notreviewed .palm-list .details-header-version,
+body.beta .palm-list .details-header-version {
+	background: url(../images/ac-header-drawer-notreviewed.png) bottom left repeat-x;
+}
+                        
+.details-header-version .version,
+.details-header-version .date,
+.details-header-version .filesize {
+	padding:5px 0px;
+	font-size:16px;
+	color:#BEBEBE;
+}
+.details-header-version .version { position:absolute; left:14px; }
+.details-header-version .date { text-align:center; width:100%; }
+.details-header-version .filesize { position:absolute; right:14px; }
+
+.details-header-title-and-creator {
+	margin-left:67px;
+	min-height:50px;       
+	margin-top: -1px;      
+	position: relative;                         
+}                    
+           
+.palm-row .details-header-title-and-creator .title,
+.palm-row .details-header-title-and-creator .subtitle,
+.palm-row .app-row-details .title,
+.palm-row .app-row-details .subtitle {
+	padding: 0px 10px 0px 8px;
+	font-size: 18px;            
+	line-height: 22px;           
+}                           
+
+.details-header .details-header-title-and-creator .details-header-title {
+	display: table-cell;
+	height: 62px;
+	vertical-align: middle;                                           
+}                                                                        
+
+.details-header .details-header-title-and-creator .details-header-title .title,
+.details-header .details-header-title-and-creator .details-header-title .subtitle  {
+	max-width: 200px;
+}                                                                
+
+.details-header-title .title {
+	font-weight: bold;
+}
+
+.palm-row .details-header-title-and-creator .subtitle,
+.palm-row .app-row-details .subtitle {
+	font-size: 16px; 
+	line-height: 20px;
+	font-weight: normal;
+}
+
+.details-header .palm-row-wrapper.padded {
+	background: url(../images/ac-header-bg.png) top left no-repeat;
+	padding: 10px 15px 0px;
+	min-height: 78px;
+	height: 78px;
+	-webkit-box-sizing: border-box;
+}
+
+.details-header .palm-row-wrapper.padded.large {
+	background: url(../images/ac-header-bg-large.png) top left no-repeat;
+	height: 98px;
+}
+
+/* Handles the 55+ char titles */
+.details-header .palm-row-wrapper.padded.largest {
+	background: url(../images/ac-header-bg-largest.png) top left no-repeat;
+	height: 118px;
+}
+
+.details-body {
+	margin-top: 0px;     
+	padding-bottom: 10px;
+}                
+
+.details-wrapper {
+	position: relative;    
+	padding-top: 10px;
+	height: 226px;        
+}                                  
+
+.details-screenshot-wrapper {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 154px;                
+	margin: 8px 0px 0 15px;    
+	padding: 0;                     
+}                        
+
+.details-screenshot {
+	overflow:hidden;   
+	position: relative;
+	height: 216px;
+	width: 154px;
+}
+
+.app-screenshot {   
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 152px;
+	height: 214px;
+	-webkit-background-size: 152px 228px;
+	-webkit-border-radius: 12px;
+	border: solid 1px #000;        
+	background-repeat: no-repeat;
+	background-position: -14px left; 
+	-webkit-transition-property: opacity;
+	-webkit-transition-duration: 0.8s;
+	-webkit-transition-timing-function: linear;
+}                    
+
+.app-screenshot.fade {
+	opacity: 0;
+}               
+
+.details-body.rows-7 .details-wrapper {
+	height: 205px;           
+}          
+
+.details-body.rows-7 .details-screenshot {
+	height: 195px;
+}                    
+
+.details-body.rows-7 .app-screenshot {
+	height: 193px;
+	-webkit-background-size: 152px 205px;
+	background-position: -12px left;
+}    
+
+/*.details-screenshot-downstate {
+	height:100%;
+	width:100%;
+	background:url(../images/thumbnail-downstate.png);
+	background:none;
+}
+.details-screenshot.selected .details-screenshot-downstate {
+	background:url(../images/thumbnail-downstate.png) center center no-repeat;
+}
+*/
+.details-downloads {
+	padding:0px 10px;
+	line-height:50px;
+	font-size:14px;
+	text-transform:uppercase;
+}
+
+.downloads-wrapper {   
+	position: absolute;
+	bottom: -4px;
+	right: 15px;
+	font-size: 16px;
+	padding: 0px;
+	margin: 0;
+	width: 120px;             
+}
+
+.clear-button {
+	line-height: 45px;
+	height: 45px;
+	border-width: 19px;
+  -webkit-box-sizing: border-box;
+  font-size: 18px;
+	-webkit-border-image: url(../images/background-pill-downstate-dark.png) 19 19 19 19 repeat repeat;
+	-webkit-border-image: url(../images/background-pill-dark.png) 19 19 19 19 repeat repeat;
+	display: block;
+	
+}
+
+.clear-button > .clear-button-label {
+	margin: -19px -13px;
+	text-align: center;
+}
+           
+.pause-button {
+	background: url(../images/pause-icon.png) top center no-repeat;
+	width: 40px;
+	height: 50px;
+	float: right;
+	display: none;  
+/*	margin-right: 3px;*/ 
+	right: -10px;       
+	position: relative; 
+}              
+
+.pause-button.show {
+	display: block;
+}                      
+
+.disabled .pause-button {
+	background: url(../images/pause-icon.png) bottom center no-repeat;
+}
+                       
+.resume-button {
+	background: url(../images/resume-icon.png) top center no-repeat;
+	width: 40px;
+	height: 50px;
+	display: none;
+	float: right;      
+	right: -10px;
+	position: relative; 
+}              
+
+.resume-button.show {
+	display: block;       
+}      
+
+.disabled .resume-button {
+	background: url(../images/resume-icon.png) bottom center no-repeat;
+}  
+
+.warning-icon {
+	background: url(../images/icon-warning.png) center center no-repeat;
+	width: 40px;
+	height: 50px;
+	float: right;
+	display: none; 
+	position: relative;    
+	right: -8px;             
+}              
+
+.warning-icon.show {
+	display: block;
+}
+
+.download-pill-content .download-app-icon,
+.download-pill-content .update-app-icon,
+.download-pill-content .launch-app-icon,
+.download-pill-content .failed-app-icon {
+	background: url(../images/download-icon.png) left center no-repeat;
+	width: 38px;
+	height: 48px;
+	float: left;
+	margin-left: -4px;
+	margin-top: 0px;
+}
+
+.download-app-promo-icon {
+	background: url(../images/download-promo-button.png) right center no-repeat;
+	min-width: 80px;
+	float: right;
+}
+
+.download-pill-content .update-app-icon {
+	background: url(../images/update-icon.png) left center no-repeat;
+}
+
+.download-pill-content .launch-app-icon {
+	background: url(../images/checkmark-dark.png) left center no-repeat;
+}
+
+.download-pill-content .failed-app-icon {
+	background: url(../images/header-warning-icon.png) center center no-repeat;
+}
+
+img.filetype-image {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -4px;
+}
+
+.pill-highlight .download-pill-background {
+  -webkit-border-image: url(../images/download-pill.png) 50 25 150 25 repeat repeat;
+}
+                              
+.clear-button.selected {
+	-webkit-border-image: url(../images/background-pill-downstate-dark.png) 19 19 19 19 repeat repeat;
+}
+
+.downloads-wrapper .clear-button {
+		min-width: 118px;
+}
+
+.palm-row .label.details-rating-label {
+	float:none;
+	color:white;
+	margin-left:15px;
+}
+.add-comment-big-rating {
+	white-space:nowrap;
+	width: 225px;
+	margin: 5px 10px;
+}
+.details-rating-count {
+	padding-right:5px;
+}
+.details-rating-star {
+	position:relative;
+	top:3px;
+	margin-right:-5px;
+}
+
+.details-stars {
+	width: 98px;
+	margin: 0 auto;
+}
+                  
+.details-rating {  
+	margin: 3px 0 5px;
+	font-size: 14px;
+}
+                             
+.downloads-wrapper .details-rating {
+	text-align: center;
+	padding: 0px;
+}
+                    
+.notreviewed-description,
+.details-description {
+	padding:15px 13px;
+	font-size:16px;
+}
+.details-globe-icon {
+	background:url(../images/icon-white-globe.png) center center no-repeat;
+}
+.details-arrow-right-icon {
+	background:url(../images/icon-arrow-right.png) center center no-repeat;
+}
+.icon.left.location-services {
+	background:url(../images/compass-icon.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.restricted-content {
+	background:url(../images/restricted-icon.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-email {
+	background:url(../images/icon-support-email.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-calendar {
+	background:url(../images/icon-support-calendar.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-contacts {
+	background:url(../images/icon-support-contacts.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-messaging {
+	background:url(../images/icon-support-messaging.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-dock {
+	background:url(../images/icon-support-dock.png) center center no-repeat;
+	margin-left:4px;
+}
+.icon.left.works-with-search {
+	background:url(../images/icon-support-search.png) center center no-repeat;
+	margin-left:4px;
+}
+.works-with-description,
+.location-services-description {
+	padding:15px 10px;
+	font-size:16px;
+}
+
+.location-services-description {
+	padding:15px 10px;
+	font-size:16px;	
+}
+
+.app-catalog-fade-bottom {
+	height: 68px;
+	width: 100%;
+	background: url(../images/app-catalog-page-fade-bottom.png) bottom repeat-x;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	-webkit-palm-mouse-target: ignore;
+}
+.app-catalog-fade-top {
+	height: 38px;
+	width: 100%;
+	background: url(../images/app-catalog-page-fade-top.png) top repeat-x;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	-webkit-palm-mouse-target: ignore;
+}
+
+/*
+.has-search-bar-top .app-catalog-fade-top {
+	top:47px;
+}
+
+
+body.beta .app-catalog-fade-bottom {
+	background: url(../images/app-catalog-page-fade-bottom-beta.png) bottom repeat-x;
+}
+
+body.beta .app-catalog-fade-top {
+	background: url(../images/app-catalog-page-fade-top-beta.png) top repeat-x;
+}    
+
+body.notreviewed .app-catalog-fade-bottom {
+	background: url(../images/app-catalog-page-fade-bottom-nonpalm.png) bottom repeat-x;
+}
+
+body.notreviewed .app-catalog-fade-top {
+	background: url(../images/app-catalog-page-fade-top-nonpalm.png) top repeat-x;
+}
+*/
+
+.review-row-title-and-date {
+	font-size:14px;
+	padding:10px 10px 0px;
+}
+.review-row-title-and-date .review-date {
+	float:right;
+}
+.review-row-rating {
+	padding:0px 10px;
+}
+.review-row-body {
+	padding:0px 10px 10px;
+	font-size:14px;
+}
+.review-row-creator {
+	font-weight:bold;
+}
+.reviews-list {
+	margin-bottom:10px;
+}
+.palm-scene.app-reviews .palm-activity-indicator-large {
+	position:absolute;
+	top:115px;
+}
+
+
+
+.tagcloud-list {
+	width: 300px;
+	text-align: center;
+	vertical-align:top;
+	margin:10px;
+	line-height: 34px;
+}
+.tagcloud-list .selected {
+	color: #fdcb52;
+}
+.tagcloud-group-1 {
+	color:#C0C0C0; /* SMALLEST */
+	font-size:14px;      
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-group-2 {
+	color:#C3C7Cb; 
+	font-size:16px;
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-group-3 {
+	color:#D0D0D0; 
+	font-size:18px;         
+	display: inline-block;    
+	margin: 0 10px;			
+}
+.tagcloud-group-4 {
+	color:#D3D7Db; 
+	font-size:20px;         
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-group-5 {
+	color:#E0E0E0; 
+	font-size:22px;         
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-group-6 {
+	color:#E3E7Eb; 
+	font-size:26px;         
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-group-7 {
+	color:#FFFFFF; /* LARGEST */ 
+	font-size:30px;         
+	display: inline-block;    
+	margin: 0 10px;
+}
+.tagcloud-empty {
+	color:#D0D0D0; 
+	font-size:18px;         
+}
+
+.add-comment-big-rating-label,
+.add-comment-big-rating-label > span {
+	height:40px;
+	line-height:55px;
+}
+.icon.right.toggle-button {
+	min-width: 100px;
+	width:auto;
+}
+.add-comment-rating-row, .post-anon-row { /* ... */
+	margin-top:-5px;
+}
+.add-comment-rating-row .label.left {
+	color:white;
+}
+.label.left.post-anon-label {
+	margin-top:16px;
+	color:white;
+}
+
+.comment-subject {
+	font-weight: bold;
+	color: #fff;
+	background: url(../images/compose-subject-solid-bg.png) repeat-x;
+}                                                                                                                      
+.comment-subject .hint-text {
+	color: #c4c4c4;
+}                  
+
+.focused .comment-subject {
+	background: url(../images/compose-subject-edit-bg.png) repeat-x;
+}
+.focused .comment-subject .hint-text {
+	color: #999;
+}
+.comment-body-textfield {
+	min-height: 270px; 
+}
+
+
+.add-comment-scene .textfield-group.focused,
+.inappropriate-scene .textfield-group.focused {
+	-webkit-border-image: url(../images/framework/group-textfield-shadow-52.png) 15 15 15 15 stretch stretch;
+	color:black;
+}
+.inappropriate-scene .icon.warning {
+	background:url(../images/icon-warning.png) center center no-repeat;
+	width:50px;
+}
+.palm-row .title.inappropriate-instruction {
+	font-size:14px;
+	padding-top:16px;
+}
+.inappropriate-textfield {
+	min-height:335px;
+}
+
+.palm-dark .palm-row.beta-row {
+	background: url(../images/ac-notreviewed-banner-bg.png) bottom left repeat-x;
+	font-size: 16px;
+	padding: 0px;
+	min-height: 28px;   
+	height: 28px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #515151;     
+	font-weight: bold;                
+}                                   
+
+.beta-row, .notreviewed-row {
+	display: none;
+}
+
+body.notreviewed .notreviewed-row {
+	display: block;
+}                                                    
+
+body:not(.notreviewed) .details-body {
+	background: none;
+  -webkit-border-image: none;    
+	padding-bottom: 0px;
+}
+                             
+body.beta .beta-row {
+	display: block;
+}               
+
+.beta-warning {
+	background: url(../images/header-warning-icon.png) center center no-repeat;
+	width: 28px;
+	height: 28px;
+	float: left;
+}
+
+
+.beta-description {
+	font-size:16px;	
+	padding: 3px 8px 8px 2px;
+}
+
+.report-problem-row .info-text {
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+.app-catalog-down-image {
+	margin-top:90px;
+	width:100%;
+	height:110px;
+	background:url(../images/icon-warning-large.png) center center no-repeat;
+}
+.app-catalog-down-message {
+	position:absolute;
+	left:0px;
+	right:0px;
+	padding:5px;
+	text-align:center;
+	font-size:20px;
+	line-height:24px;
+}
+#app-catalog-down-code {
+    font-size: 12px;
+    color: #CFCFCF;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.icon.left.search-result-app-icon.has-update {
+	position:relative;
+}
+.has-update .update-badge {
+	background:url(../images/update-badge.png) center center no-repeat;
+	position:absolute;
+	top:0px;
+	left:30px;
+	height:16px;
+	width:16px;
+}
+
+/* center the large activity indicators */
+/* default */
+.app-catalog .palm-activity-indicator-large {
+	margin-top: 100px;
+	margin-left: 96px;
+}
+.app-details .palm-activity-indicator-large {
+	margin-top: 140px;
+	margin-left: 96px;
+}
+
+
+
+
+
+.main-spinner-wrapper {
+	position:relative;
+	height:0px;
+	width:100%;
+}
+.main-spinner {
+	position:absolute;
+	top:42px;
+	left:50%;
+	margin-left:-16px;
+}
+
+.progress-pill-container {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 50000;
+}
+
+.actiontype-icon.none {
+  display: none;
+}
+
+
+
+.app-icon-filter-date {
+	background:url(../images/app_icon_date.png) top center no-repeat;
+}
+.app-icon-filter-alpha {
+	background:url(../images/app_icon_alphabetical.png) top center no-repeat;
+}
+.app-icon-filter-rating {
+	background:url(../images/app_icon_rating.png) top center no-repeat;
+}
+.app-icon-filter-price {
+	background:url(../images/app_icon_price.png) top center no-repeat;
+}
+.app-icon-category-list {
+	background:url(../images/menu_button_list.png) top center no-repeat;
+}
+.app-icon-catgory-tag-cloud {
+	background:url(../images/menu_button_tag_cloud.png) top center no-repeat;
+}
+
+.app-icon-submit {
+	background:url(../images/icon-airplane.png) center center no-repeat;
+}
+
+
+
+.splash-scrim {
+	display:block;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	height:100%;
+	width:100%;
+	background:url(../images/splash-scrim.png) top left no-repeat;
+	z-index:11003;
+}                               
+                             
+#palm-disclaimer {
+	display: none;
+}               
+
+#palm-disclaimer.beta {
+	display: block;
+	position: fixed;
+	top: 46px;
+	right: 0;
+	z-index: 11001;
+	width: 113px;
+	height: 111px;
+	background: url(../images/disclaimer-beta.png) no-repeat;     
+	-webkit-palm-mouse-target: ignore;
+}
+
+#palm-disclaimer.beta.app {
+	top: 0px;
+}
+
+.icon.appcatalog {
+	background: url(../images/appcatalog.png) center center no-repeat;
+}
+
+.list-item-add-button {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	height: 54px;
+  width: 44px;
+  float: left;
+}
+
+.palm-account-icon.local {
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: -4px;
+	height: 54px;
+  width: 44px;
+  float: left;
+}
+
+.palm-row .palm-row-wrapper .accountDesc .title {
+	padding: 0;
+	margin:0px;
+}
+
+.palm-row .accountDesc .subtitle {
+	  color: #898989;
+	padding:0px 0 0 0px;
+
+}
+.accountDesc {
+	margin-left: 45px;
+	padding: 7px 0;
+}
+
+.palm-row .palm-row-wrapper.addAccount {
+	padding-left: 0px;
+}
+
+.palm-row .palm-row-wrapper.addAccount .title {
+	color: #898989;
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+.error {
+	color: #d70000;
+}
+
+.palm-row .palm-row-wrapper .title.datepicker {
+	padding-top: 0px;
+	padding-bottom: 4px;
+}
+
+#stateField {
+	padding-left: 6px;
+	padding-right: 8px;
+	margin-top: -8px;
+	padding-bottom: 4px;
+}
+
+.icon.visa {
+	background: url(../images/payment-visa.png) center center no-repeat;
+	width: 64px;
+	height: 50px;
+}
+
+.icon.mc {
+	background: url(../images/payment-mastercard.png) center center no-repeat;
+	width: 64px;
+	height: 50px;	
+}
+
+.profile-settings .palm-inline-error.resend-error {
+	padding-top: 10px;
+}
+
+.payment-setup .palm-page-header {
+	margin-bottom: 10px;
+}
+
+.security-question .dialog-message {
+	margin-bottom: 10px;
+}
+
+/* Overriding Framework style for list selector to remove truncation */
+
+.palm-popup-container .title.truncating-text {
+   white-space: normal !important;
+}
+
+#palm-profile-password #acctPassword {
+	margin-top:5px;
+}
+
+/*Fullscreen styles*/
+.account-profile-scene, .prefs-scene {
+	height: 100%;
+	width: 100%;
+}
+
+.account-profile-scene .profile-settings,
+.prefs-scene .account-prefs {
+	height: 100%;
+	width: 100%;
+}
+
+.palm-fullscreen {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+
+.palm-fullscreen .palm-fullscreen-cont {
+	display:table-cell;
+	height: 100%;
+	margin: auto;
+	vertical-align: middle;
+}
+
+.palm-fullscreen .palm-fullscreen-cont .spinner {
+	margin: 0 auto 0;
+}
+
+
+/* Glass panel */
+#firstuse-main {
+		width: 320px;
+		margin: 0px;
+		color: #FFF;
+		border-width: 257px 0 35px 0;
+		-webkit-border-image: url(../images/glass-tile.png) 257 0 35 0 repeat repeat;
+		text-align: left;
+		-webkit-user-select: none;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+}
+
+.glass-card {
+		color: #FFF;
+		width: 270px;
+		margin: 0;
+		padding-top: 0px;
+}
+
+.glass-card.big-notification,
+.big-notification .glass-card {
+  min-height: 349px;
+}
+
+.glass-margin {
+	margin: -247px 20px 0px 20px;
+	width: 280px;
+	min-height: 353px;
+}
+
+/* if you make a change to the style below, please remember to mirror it in the localized stylesheets */
+/* (to be found under /resources/xx_xx/stylesheets/) */
+.glass-card .scene-title {
+		font-size: 22px;
+		margin: 4px 0 10px 0;
+		text-align: center;
+		padding-bottom: 10px;
+		background: url(../images/list-separator260.png) bottom center no-repeat;
+		text-transform: capitalize;
+}
+
+
+.glass-card .glass-div {
+    margin: -15px 0px -15px 0px;
+    margin: 0;
+    /*padding-bottom: 2px;*/
+    color: white;
+    text-align: left;
+}
+
+.glass-card p {
+    margin: 0 0px 12px 0px;
+    padding: 0;
+    font-size: 16px;
+}
+
+/* text areas */
+.glass-card textarea,
+.glass-card .terms-box {
+		width: 295px;
+	  	height: 230px;
+		background: none;
+		margin: 3px 0 10px -7px;
+		padding: 0;
+		border-width: 10px;
+		-webkit-border-image: url(../images/terms-box.png) 10 10 10 10 stretch stretch;
+		-webkit-box-sizing: border-box;
+		overflow: hidden;
+}
+
+.glass-card.rows-7 textarea,
+.glass-card.rows-7 .terms-box {
+	height: 160px;
+}
+
+.glass-card .terms-box.expanded {
+  height: auto !important;
+}
+
+.glass-card .terms-box-margin {
+		width: 265px;
+		color: #000;
+		font-size: 14px;
+    word-wrap: break-word;
+    padding-left: 5px;
+}
+
+
+/* general */
+.glass-card ul	{ list-style-type: square;
+				list-style-position: outside;
+				margin-left: 0px;}
+
+.glass-card a:link, 
+.glass-card a:visited
+	{ color: #ccccff;}  
+
+
+.confirm-container .palm-button {
+  margin-left: -5px;
+  margin-right: -5px;  
+}
+
+.confirm-container {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  padding-top: 50px;
+  left: 17px;
+}
+
+/*
+ * Styles for Terms and Conditions
+ */
+
+div.terms-conditions-title {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+div.app-license-title {
+	font-weight: bold;
+	font-size: 17px;
+	text-align: center;
+}
+
+span.bold-text {
+  font-weight: bold;
+}
+
+span.all-caps-text {
+  text-transform: uppercase;
+}
+
+span.underline-text {
+  text-decoration: underline;
+}
+
+span.yellow-highlight {
+  background: yellow;
+}
+
+.final-statement {
+  font-size: 16px;
+}
+
+ol.terms-text {
+  margin-left: -20px;
+}
+
+ol li div {
+  margin-bottom: 12px;
+}
+
+ol li div:first-child {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a.table-of-contents,
+span.dialog-link {text-decoration: underline; font-weight: bold; color:#1F00F0;}
+a:link.table-of-contents {color: #1F00F0;}
+a:visited.table-of-contents {color: #1F00F0;}
+a:active.table-of-contents {color: #1F00F0;}
+a:hover.table-of-contents {color: #1F00F0;}
+
+.table-contents-link {
+  min-height: 48px;
+  background: yellow;
+}
+
+.terms-expand-icon,
+.terms-collapse-icon {
+  width: 52px;
+  height: 52px;
+  background: url(../images/terms-collapse-icon.png) top center no-repeat;
+  background: url(../images/terms-expand-icon.png) top center no-repeat;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.terms-collapse-icon {
+  background: url(../images/terms-collapse-icon.png) top center no-repeat;
+}
+
+.terms-expand-icon.selected,
+.terms-collapse-icon.selected {
+  background-position: bottom center;
+}
+
+/* fixed glass card, with scroll fades */
+.glass-background {
+	position:fixed;
+	z-index:-1;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:24px;
+	margin: 0px;
+	color: #FFF;
+	border-width: 146px 0 146px 0;
+	-webkit-border-image: url(../images/glass-tile.png) 146 0 146 0 repeat repeat;
+	text-align: left;
+	-webkit-user-select: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.glass-fade-bottom {
+	height: 40px;
+	width: 100%;
+	background: url(../images/glass-fade-bottom-corners.png) bottom center repeat-x;
+	position:fixed;
+	bottom: 24px;
+	left: 0px;
+	z-index:1;
+	-webkit-palm-mouse-target: ignore;
+}
+.glass-fade-top {
+	height: 40px;
+	width: 100%;
+	background: url(../images/glass-fade-top.png) top center repeat-x;
+	position:fixed;
+	top: 0px;
+	left: 0px;
+	z-index:1;
+	-webkit-palm-mouse-target: ignore;
+}
+
+
+.big-notification .glass-background,
+.big-notification .glass-fade-bottom {
+	bottom:48px;
+}
+
+/* TODO: after the fixed glass-background styles are integrated, remove the styles that these styles override */
+.palm-scene.big-notification #firstuse-main {
+	-webkit-border-image:none;
+}
+.palm-scene.big-notification .glass-margin {
+	margin: 12px 20px !important;
+}
+.palm-scene.big-notification .glass-margin,
+.palm-scene.big-notification .glass-card {
+	min-height:0px !important;
+}
+
+
+/* sizing scene scrollers to account for the "fake notification areas" and pinned buttons */
+.palm-scene.big-notification {
+	padding-bottom:48px;
+}
+.palm-scene.has-two-pinned-buttons.small-notification {
+	padding-bottom: 132px;
+}
+
+
+.pinned-button-bottom-fade {
+	position:fixed; 
+	bottom:0px; 
+	left:0px; 
+	right:0px;
+	-webkit-border-image:url(../images/glass-tile-with-fade.png) 36 0 30 0 repeat repeat;
+	border-width:36px 0px 30px 0px;
+	height:27px;
+}
+.has-two-pinned-buttons .pinned-button-bottom-fade {
+	height:82px;
+}
+
+.pinned-button-bottom-container {
+	position:fixed; 
+	bottom:0px; 
+	left:16px; 
+	right:16px;
+	width:auto;
+}
+.palm-scene.has-two-pinned-buttons .glass-fade-bottom {
+	bottom:132px;
+	background: url(../images/fade-arrow-down.png) bottom center no-repeat;
+}
+.palm-scene.has-two-pinned-buttons.big-notification .glass-fade-bottom {
+	bottom:107px;	
+}
+
+.update-date {
+	font-size: 15px;
+}
+
+/*Fullscreen styles*/
+/*.palm-fullscreen {
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+.palm-fullscreen .palm-fullscreen-cont {
+  display:table-cell;
+  height: 100%;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.palm-fullscreen .large-icon {
+  width: 100%;
+  height: 120px;
+  color: #FFFFFF;
+  margin: 0px auto;
+}
+
+.palm-fullscreen .fullscreen-message {
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0px 20px 0px;
+  font-size: 18px;
+  margin: 0 auto;
+}                      */
+
+#appsContainer, .details-scene, .app-details, #detailsPage, #noApps, #appsContainer {
+	height: 100%;
+}             
+
+#noApps .palm-fullscreen {
+	margin-top: -60px;
+}                                            
+   
+.large-app-catalog {
+  height: 128px;
+  background: url(../images/large-app-catalog-icon.png) center center no-repeat;
+}
+
+/* The no app message needs to override when the feature tiles are visible */
+#dv-fa-appslist-message-default div.large-app-catalog {
+    margin-top: 5px;
+}
+#dv-fa-appslist-message-default .fullscreen-message {
+    color: white;
+}
+                    
+.app-details.notcompatible .fullscreen-message:not(.notvalidapp) {
+	display: none;
+}              
+
+.app-details:not(.notcompatible) .fullscreen-message.notvalidapp {
+	display: none;
+}                       
+                 
+.security-code {
+  background: url(../images/security-code.png) center center no-repeat;
+}
+
+#appsList {
+	margin-bottom: 50px;
+}
+
+.active .progress-bar-background {
+	position: absolute;
+	width: 320px;
+	height: 42px;
+	left:0px;
+/*	margin-top: -58px;*/
+	margin-top: -11px;
+	border-width: 16px 16px 12px 15px;
+	-webkit-border-image: url(../images/update-progress-background.png) 15 15 11 15;	
+}
+
+.active .progress-bar {
+	width: 0%; /*MODIFY THIS NUMBER TO CHANGE THE PROGRESS*/
+	height: 68px;
+	position: absolute;
+	left: 0px;
+	margin-top: -10px;
+	margin-right: -7px;
+	border-width: 0px 7px 0px 1px;
+	-webkit-border-image: url(../images/update-progress-blue.png) 3 7 3 1;
+/*	-webkit-box-sizing: border-box;   */
+}	        
+
+.popapps-loading {   
+	height: 110px;
+	overflow: hidden;
+	width: 100%;
+}            
+
+.popapps-loading-scroller {
+	width: 130%;
+}     
+
+.video-preview {
+	width: 120px;
+	height: 80px;
+	position: relative;    
+}    
+
+.video-screencap {               
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: 118px 73px;
+	-webkit-border-radius: 12px;
+	border: solid 1px #000;        
+	width: 118px;
+	height: 73px;
+	display:none;    
+	margin: auto;
+}             
+
+.video-preview.show .video-screencap {
+	display:block;
+}
+                
+.details-body.rows-7 .video-preview {
+	height: 66px;
+}              
+
+.details-body.rows-7 .video-screencap {
+	width: 94px;  
+	height: 58px;
+}           
+
+.details-body.rows-7 .video-play-icon {
+	top: 17px;
+}
+
+
+.video-play-icon {
+	width: 32px;
+	height: 32px;
+	background: url(../images/play-button.png) top center no-repeat;
+	position: absolute;
+	top: 20px;
+	left: 43px;  
+	display: none;
+}               
+
+.video-preview.show .video-play-icon {
+	display:block;
+}                                                  
+
+.video-preview.selected .video-play-icon { 
+	background: url(../images/play-button.png) bottom center no-repeat;
+}
+
+/* @group New Stuff Clean up later */
+
+.category-selector {
+	position: relative;
+	height: 50px;
+	width: 270px;
+	background: url(../images/category-selector.png) no-repeat 0 0;
+	line-height: 46px;
+	text-transform: uppercase;
+	margin-bottom: -5px;
+	font-size: 16px;
+	padding-left: 15px;
+	padding-right: 35px;
+	font-weight: bold;
+}
+
+.category-selector:active {
+	background-position: 0 -50px;
+}
+
+/* Used to for a popup submenu right to left/top to bottom grow pattern */
+#categorySelectorPlacementAnchor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+#category-selector-fade {
+    background: url(../images/category-selector-shadow-bottom.png) repeat-x;
+    position: relative;
+    width: 100%;
+    height: 15px;
+    margin-bottom: -15px;
+    z-index: 1000;
+}
+
+.feature-tile-wrapper {
+    padding-left: 8px;
+    position: relative;
+    height: 115px;
+}
+
+.feature-tile-inner-wrapper {
+	position: absolute;
+	bottom: 0px;
+}
+
+.feature-tile {
+	display: inline;
+	margin-left: -4px;
+}
+
+.share-popup,
+.category-popup {
+	color: #1f1f1f;
+}
+
+.category-popup .palm-popup-icon.left {
+	margin-right: -10px;
+	margin-left: 10px;
+}
+
+.share-popup-scrim,
+.category-popup-scrim {
+	
+}
+
+.app-search-bar-inactive {
+    background: url(../images/ac-header-pill.png) no-repeat 0 0;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin-top: 2px;
+}
+
+.app-search-bar-inactive img {
+    padding: 5px 0 0 15px;
+}
+
+#app-search-bar-text {
+    position: relative;
+    top: -7px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#app-search-bar-text.custom-app-list {
+    top: 8px;
+    left: 18px;
+}
+
+.app-search-bar-button {
+    background: url(../images/search-button.png) no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.app-search-bar-button-active {
+    background: url(../images/search-button-active.png) no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}
+
+.app-search-bar-active {
+    background: url(../images/ac-header-pill-search.png) no-repeat 0 0;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    z-index: 100000;
+    margin-top: 2px;
+}
+
+.search-scene-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    width: 100%;
+    height: 50px;
+    margin-top: 2px;
+}
+
+.search-scene .app-search-bar-active {
+    background: url(../images/ac-header-pill-search.png) no-repeat 0 0;
+}
+
+.search-scene .app-search-bar-inactive {
+    background: url(../images/ac-header-pill.png) no-repeat 0 0;
+    font-weight: bold;
+}
+
+#dv-fa-appslist .palm-row,
+#description-details .palm-row, 
+#linkList .palm-row {
+    background: url(../images/ac-list-separator.png) repeat-x 0% 100%;
+}
+
+#dv-fa-appslist .palm-row:last-child,
+#description-details .palm-row:last-child, 
+#linkList .palm-row:last-child,
+#dv-fa-appslist .palm-row.selected,
+#description-details .palm-row.selected,
+#linkList .palm-row.selected {
+	background-image: none;
+}
+
+.search-text {
+    color: gray;
+    line-height: 46px;
+    position: relative;
+    left: 20px;
+    width: 76%;
+}
+
+.search-text input {
+    border: none;
+    margin-top: 3px;
+    background-color: transparent;
+}
+
+.palm-scrim {
+    background-image: url(../images/splash-scrim.png);
+}
+
+
+
+.palm-menu.command-menu.palm-default > .palm-menu-fade {
+    height: 68px;
+    background-image: url(../images/app-catalog-page-fade-bottom.png);
+}
+
+#palm-fullscreen-cont div.fullscreen-message {
+  color: #FFFFFF;
+}
+
+/* Synergy - Accounts, Just Type, and Dock */
+/*
+#palm-fullscreen-cont.synergy div.fullscreen-message {
+  color: #333333;
+}
+
+.search-scene .synergy,
+.search-scene .synergy .search-result-price {
+    color: black;
+}
+
+.search-scene .synergy .subtitle {
+    color: #333333;
+}
+*/
+.synergy-search-icon {
+	/*float: left;*/
+}
+
+.synergy-search-icon #synergySearchIcon {
+	width: 32px;
+	height: 32px;
+	margin: 10px;
+	float: left; 
+}
+
+.palm-dialog-content .space {
+	height: 15px;
+}
+
+#app-search-bar-icon {
+    margin-top: 2px;
+}
+
+#app-search-bar-text {
+    display: inline-block;
+    position: relative;
+    top: -9px;
+}
+
+/* @end */

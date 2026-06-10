@@ -1,0 +1,95 @@
+<div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Billing Country
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single">
+				<div class="palm-row-wrapper" x-mojo-focus-highlight="true">
+					<div id="billCountryListSelector" x-mojo-element="ListSelector"></div>   
+				</div>
+			</div>
+		</div>
+		
+	</div>
+    <div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Payment Method
+		</div>
+		<div id="cardTypeList" class="palm-list" x-mojo-element="List"></div>
+	</div>
+	
+	<div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Card Information
+		</div>
+		<div class="palm-list">
+			<div class="palm-row first">
+				<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+					<div class="title">
+						<div id="creditCardField" x-mojo-element="TextField"></div>
+					</div>
+				</div>
+			</div>
+			<div class="palm-row">
+				<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+					<div class="title">
+            <div class="icon right security-code"></div>
+						<div id="secretNumField" x-mojo-element="PasswordField"></div>
+					</div>
+				</div>
+			</div>
+			<div class="palm-row last">
+				<div class="palm-row-wrapper" x-mojo-focus-highlight="true">
+					<div class="title datepicker">
+						<div x-mojo-element="DatePicker" id="cardExpDate" class="datepickerClass" name="datepickerName"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Billing Address
+		</div>
+		<div class="palm-list">
+			<div class="palm-row">
+				<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+					<div class="title">
+						<div id="nameField" x-mojo-element="TextField"></div>
+					</div>
+				</div>
+			</div>
+			<div id="address1Container">
+			</div>
+			<div class="palm-row">
+				<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+					<div class="title">
+						<div id="address2Field" x-mojo-element="TextField"></div>
+					</div>
+				</div>
+			</div>
+			<div id="address3Container">
+			</div>
+			<div id="cityContainer">
+			</div>
+			<div id="stateContainer">
+			</div>
+			<div id="zipContainer">
+			</div>
+			<div class="palm-row last">
+				<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+					<div class="title">
+						<div id="phoneNumField" x-mojo-element="TextField"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="palm-body-text" x-mojo-loc="">
+		Credit card information is stored on a secure server, not in your phone.
+	</div>
+
+	<div x-mojo-element="Button" id="removeButton"></div>
+	<div x-mojo-element="Button" id="saveButton" tabindex="1"></div>	
+	<div x-mojo-element="Button" id="cancelButton"></div>

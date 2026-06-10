@@ -1,0 +1,124 @@
+<div class="account-prefs">
+	<div class="palm-page-header">
+		<div class="palm-page-header-wrapper">              
+			<div class="icon appcatalog">
+			</div>         
+			<div class="title" x-mojo-loc="">Preferences &amp; Accounts</div>      
+		</div>
+	</div>
+	
+	<div class="palm-fullscreen palm-scrim" id="spinnerCont">
+		<div class="palm-fullscreen-cont">
+			<div id="spinner" class="spinner" x-mojo-element="Spinner"></div>	
+		</div>
+	</div>
+
+	<div class="palm-body-text" id="descriptionOB" x-mojo-loc="">
+		A carrier account or credit card is required to purchase items.
+	</div>
+
+	<div class="palm-body-text" id="descriptionCC" x-mojo-loc="" style="display:none">
+		A credit card is required to purchase items.
+	</div>
+
+	
+	<div class="palm-group" id="defaultGroup">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Default Payment Method
+		</div>
+		<div id="paymentTypeList" class="palm-list" x-mojo-element="List"></div>
+	</div>
+
+  <div class="palm-group" id="carrierGroup">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Carrier Account
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single" id="addCarrierButton" x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper addAccount">
+					<div class="list-item-add-button">
+					</div>
+					<div class="title" x-mojo-loc=''>
+						Add Account
+					</div>
+				</div>
+			</div>
+			<div class="palm-row single" id="currentCarrier"   style="display:none"  x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper">
+					<div class="palm-account-icon local left"></div>
+					<div class="accountDesc">
+                     	<div class="title" x-mojo-loc="">Carrier Account</div>
+ 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Credit Card Account
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single" id="addAccountButton" x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper addAccount">
+					<div class="list-item-add-button">
+                    </div>
+					<div class="title" x-mojo-loc=''>
+						Add Account
+					</div>
+				</div>
+			</div>
+			<div class="palm-row single" id="currentAccount"   style="display:none"  x-mojo-touch-feedback="delayed">
+				<div class="palm-row-wrapper">
+					<div class="palm-account-icon local left"></div>
+					<div class="accountDesc">
+                     	<div class="title" id="userName"></div>
+                      	<div class="subtitle" id="creditCardTypeAndLast4digits"></div>
+ 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="palm-group">  
+		<div class="palm-group-title" x-mojo-loc="">
+			Password is required
+		</div>
+		<div class="palm-list">
+			<div class="palm-row single">
+				<div class="palm-row-wrapper" x-mojo-focus-highlight="true">
+					<div id="passwordReqSelector" x-mojo-element="ListSelector"></div>   
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="invoiceEmailContainer" style="display:none">
+        <div id="embargoedAddError" class="palm-inline-error" style="display:none">
+			<div class="error-message" x-mojo-loc=""> The United States Government prohibits HP from allowing you to use this email address.</div>
+		</div>
+		<div id="emailNotValidError" class="palm-inline-error" style="display:none">
+			<div class="error-message" x-mojo-loc="">Email must be in a valid format.</div>
+		</div>
+            
+		<div class="palm-group">  
+			<div class="palm-group-title" x-mojo-loc="">
+				Send Receipts
+			</div>
+			
+				<div class="palm-list">
+					<div class='palm-row single'>                                                      
+							<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+									<div class="title"> 
+										<div id="invoiceEmail" x-mojo-element="TextField" ></div>
+						      		</div>
+						     </div>                                                                 
+					</div>
+				</div>
+				
+		</div>
+	</div>
+	
+	<!-- <div class="palm-body-text" x-mojo-loc="">
+		Enter your HP webOS Account password for the first purchase. Confirm each purchase thereafter.
+	</div> -->
+</div>

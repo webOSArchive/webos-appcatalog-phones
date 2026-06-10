@@ -1,0 +1,58 @@
+<div class="palm-scene palm-hasheader palm-dark app-catalog app-reviews">
+	<div class="app-catalog-fade-top" x-mojo-scroll-fade="top"></div>	
+	<div class="app-catalog-fade-bottom" x-mojo-scroll-fade="bottom"></div>
+	
+	<div id="commentsHead"></div>
+	                        
+	<div id="myReview" style="display:none">
+		<table class="palm-list-section-label">
+			<tr>
+				<td class="left"></td>
+				<td class="label">Mi reseña</td>
+				<td class="right"></td>
+			</tr>
+		</table>
+		<div class="palm-row no-separator">
+			<div class="review-row-title-and-date">
+				<div id="myreview_date" class="review-date"></div>
+					<img id="myreview_rating" src='images/stars-3.png' width="62px" height="14px"/>
+				<!-- </div> -->
+			</div>
+			<div class="review-row-body">
+				<span class="review-row-creator">Por <span id="myreview_creator"></span></span>
+				<span id="myreview_comment"></span>
+			</div>
+		</div>
+	</div>
+	
+	<table class="palm-list-section-label">
+		<tr>
+			<td class="left"></td>
+			<td id="haveReviews" class="label">Reseñas</td>
+			<td class="right"></td>
+		</tr>
+	</table>
+	
+	<div id="haveNoReviews" class="info-text" style="display:none;">No hay reseñas</div>
+	
+	<div id='spinner' x-mojo-element='Spinner'></div>
+	
+	
+	
+	<div id='commentsList' class="palm-list reviews-list" x-mojo-element="List"></div>
+
+
+	<!-- 
+	<div id="dv-fa-cm-commentslist" class="palm-list" x-mojo-element="List" style="visibility:hidden;"></div>
+	<div id="dv-fa-cm-commentslist-message" class="palm-list" style="display:none">
+		<div class="palm-row last">
+			<div class="palm-row-wrapper">
+				<div class="title" x-mojo-loc="">
+					No comments entered by users.
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+	
+</div>

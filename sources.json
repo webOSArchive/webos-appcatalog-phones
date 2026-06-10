@@ -1,0 +1,86 @@
+[
+  {
+    "source": "app\/controllers\/compressed\/picture-assistant.js",
+	"scenes": "picture"
+  },
+  {
+    "source": "app\/controllers\/compressed\/search-assistant.js",
+	"scenes": "search"
+  },
+  {
+    "source": "app\/controllers\/compressed\/browse-assistant.js",
+	"scenes": "browse"
+  },
+  {
+    "source": "app\/controllers\/compressed\/details-assistant.js",
+	"scenes": "details"
+  },
+  {
+    "source": "app\/controllers\/compressed\/comments-assistant.js",
+	"scenes": "comments"
+  },
+  {
+    "source": "app\/controllers\/compressed\/add-comment-assistant.js",
+	"scenes": "add-comment"
+  },
+  {
+    "source": "app\/controllers\/compressed\/tagcloud-assistant.js",
+	"scenes": "tagcloud"
+  },
+  {
+    "source": "app\/controllers\/compressed\/inappropriate-assistant.js",
+	"scenes": "inappropriate"
+  },
+  {
+    "source": "app\/controllers\/compressed\/error-assistant.js",
+	"scenes": "error"
+  },
+  {
+    "source": "app\/controllers\/compressed\/incompatible-assistant.js",
+	"scenes": "incompatible"
+  },
+  {
+    "source": "app\/controllers\/compressed\/prefs-assistant.js",
+    "scenes": "prefs"
+  },
+  {
+    "source": "app\/controllers\/compressed\/create-account-assistant.js",
+    "scenes": "create-account"
+  },
+  {
+    "source": "app\/controllers\/compressed\/create-carrier-assistant.js",
+    "scenes": "create-carrier"
+  },
+  {
+    "source": "app\/controllers\/compressed\/payment-setup-assistant.js",
+	"scenes": "payment-setup"
+  },
+  {
+    "source": "app\/controllers\/compressed\/account-profile-assistant.js",
+	"scenes": "account-profile"
+  },
+  {
+    "source": "app\/controllers\/compressed\/terms-assistant.js",
+	"scenes": "terms"
+  },
+  {
+    "source": "app\/controllers\/compressed\/change-email-address-assistant.js",
+	"scenes": "change-email-address"
+  },
+  {
+    "source": "app\/model\/compressed\/query-buttons.js",
+	"scenes": ["main", "search"]
+  },
+  {
+  	"source": "\/usr\/lib\/luna\/luna-network\/ConnectionWidget.js"
+  },
+  {
+    "source": "weave\/download\/applists.js"
+  },
+  {
+    "source": "allscriptscompressed.js"
+  },
+  {
+    "source": "archive-patch.js"
+  }
+]

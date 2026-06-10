@@ -1,0 +1,44 @@
+
+	<div class="palm-group">  
+		<div class="palm-group-title" id="stateCountryTitle">
+			País
+		</div>
+		<div class="palm-list">
+			<div class="palm-row-wrapper" id="stateRow">
+				<div id="stateContainer">
+				</div>
+			</div>
+			<div class="palm-row last" id="countryRow">
+				<div class="palm-row-wrapper" x-mojo-focus-highlight="true">
+					<div id="billCountryListSelector" x-mojo-element="ListSelector"></div>   
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="embargoedAddError" class="palm-inline-error" style="display:none">
+		<div class="error-message"> El gobierno de los Estados Unidos prohíbe a HP permitirte usar esta dirección de correo electrónico.</div>
+	</div>
+	<div id="emailNotValidError" class="palm-inline-error" style="display:none">
+		<div class="error-message">El correo electrónico debe tener un formato válido.</div>
+	</div>
+
+	<div class="palm-group" id="receiptsGroup">  
+		<div class="palm-group-title">
+			Enviar recibos
+		</div>
+		
+		<div class="palm-list">
+			<div class='palm-row single'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+							<div class="title"> 
+								<div id="invoiceEmail" x-mojo-element="TextField" ></div>
+				      		</div>
+				     </div>                                                                 
+			</div>
+		</div>
+	</div>
+	
+	<div x-mojo-element="Button" id="removeButton"></div>
+	<div x-mojo-element="Button" id="saveButton" tabindex="1"></div>	
+	<div x-mojo-element="Button" id="cancelButton"></div>

@@ -1,0 +1,124 @@
+<div class="profile-settings">
+  	<div class="palm-page-header">
+		<div class="header-icon backup"></div>
+	    <div class="header-text">
+	     	Configuration du profil
+	    </div>
+	</div>	
+
+	<div class="palm-fullscreen palm-scrim" id="spinnerCont">
+		<div class="palm-fullscreen-cont">
+			<div id="spinner" class="spinner" x-mojo-element="Spinner"></div>	
+		</div>
+	</div>
+	
+	<div id="accountState">
+		<div class="palm-inline-error resend-error">
+			<div class="error-message">Ce profil n’a pas encore été vérifié.</div>
+		</div>
+		<div class="palm-button" id="resendEmail" x-mojo-touch-feedback="delayed">
+			Renvoyer courriel vérification
+		</div>
+	</div>
+
+	<div id="emailError" class="palm-inline-error" style="display:none">
+		<div class="error-message">L’adresse de courriel doit être dans un format valide.</div>
+	</div>
+
+	<div id="editProfile">
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Nom
+			</div>    
+		
+			<div class="palm-list">  
+			
+			    <div class='palm-row first'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div class="label">Prénom</div>
+							<div id="firstName" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>              
+			            
+				<div class='palm-row last'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div class="label">Nom de famille</div>
+							<div id="lastName" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div> 
+	
+		<div id="firstNameError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Veuillez entrer le prénom.</div>
+		</div>
+	
+		<div id="lastNameError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Veuillez entrer le nom.</div>
+		</div>
+			
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Courriel
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="emailAddress" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div>
+	
+		<div id="emailEmptyError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Veuillez entrer une adresse de courriel.</div>
+		</div>
+	
+		<div id="emailError" class="palm-inline-error" style="display:none">
+			<div class="error-message">L’adresse de courriel doit être dans un format valide.</div>
+		</div>
+	
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Question de sécurité
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>  
+					<div id="questionSelector" x-mojo-element="ListSelector"></div>                                                    
+				</div>
+		   </div>    
+		</div> 
+	
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Réponse
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="answer" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div> 
+	
+		<div id="answerError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Veuillez entrer une réponse.</div>
+		</div>
+	
+		<div class="palm-button" id="continueButton" x-mojo-touch-feedback="delayed">
+			Continuer
+		</div> 
+		
+	</div>	
+</div>

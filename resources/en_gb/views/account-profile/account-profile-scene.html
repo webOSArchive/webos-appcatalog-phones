@@ -1,0 +1,124 @@
+<div class="profile-settings">
+  	<div class="palm-page-header">
+		<div class="header-icon backup"></div>
+	    <div class="header-text">
+	     	Profile Settings
+	    </div>
+	</div>	
+
+	<div class="palm-fullscreen palm-scrim" id="spinnerCont">
+		<div class="palm-fullscreen-cont">
+			<div id="spinner" class="spinner" x-mojo-element="Spinner"></div>	
+		</div>
+	</div>
+	
+	<div id="accountState">
+		<div class="palm-inline-error resend-error">
+			<div class="error-message">This profile has not been verified.</div>
+		</div>
+		<div class="palm-button" id="resendEmail" x-mojo-touch-feedback="delayed">
+			Resend verification email
+		</div>
+	</div>
+
+	<div id="emailError" class="palm-inline-error" style="display:none">
+		<div class="error-message">Email must be in valid format.</div>
+	</div>
+
+	<div id="editProfile">
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Name
+			</div>    
+		
+			<div class="palm-list">  
+			
+			    <div class='palm-row first'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div class="label">First</div>
+							<div id="firstName" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>              
+			            
+				<div class='palm-row last'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div class="label">Last</div>
+							<div id="lastName" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div> 
+	
+		<div id="firstNameError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Please enter a forename.</div>
+		</div>
+	
+		<div id="lastNameError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Please enter a surname.</div>
+		</div>
+			
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Email
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="emailAddress" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div>
+	
+		<div id="emailEmptyError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Please enter an email address.</div>
+		</div>
+	
+		<div id="emailError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Email must be in a valid format.</div>
+		</div>
+	
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Security question
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>  
+					<div id="questionSelector" x-mojo-element="ListSelector"></div>                                                    
+				</div>
+		   </div>    
+		</div> 
+	
+		<div class="palm-group">
+			<div class="palm-group-title" id="title">Answer
+			</div>    
+		
+			<div class="palm-list">  
+			            
+				<div class='palm-row single'>                                                      
+					<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+						<div class="title">    
+							<div id="answer" x-mojo-element="TextField" ></div>
+				        </div>                                                                 
+				    </div>
+				</div>
+		   </div>    
+		</div> 
+	
+		<div id="answerError" class="palm-inline-error" style="display:none">
+			<div class="error-message">Please enter an answer.</div>
+		</div>
+	
+		<div class="palm-button" id="continueButton" x-mojo-touch-feedback="delayed">
+			Continue
+		</div> 
+		
+	</div>	
+</div>

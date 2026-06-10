@@ -1,0 +1,147 @@
+<div id="detailsall">
+	
+	<div class="palm-list">
+	
+		<div id="detailHeader" class="palm-row details-header no-separator">
+			<div id="detailHeaderWrapper" class="palm-row-wrapper padded">
+				<div class="icon left details-header-icon">
+					<div style='background: url(#{appIconBig}) center center no-repeat;float:left;width:64px;height:64px'></div>
+				</div>  
+				<div class="details-header-title-and-creator">
+					<div class="details-header-title">
+						<div class="title">#{title}</div>
+						<div class="subtitle truncating-text">#{creator}</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+		                                                                               
+		<div id="detailsDrawer" x-mojo-element="Drawer">
+			<div class="details-header-version">
+				<div class="details-header-version-wrapper">
+					<div class="version">#{formattedVersion}</div>
+					<div class="filesize">#{formattedAppSize}</div>
+					<div class="date">#{formattedDate}  #{singleAppThumbnail}</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="palm-row beta-row">
+			<div class="palm-row-wrapper">
+				<div class="beta-description">APLICACIÓN BETA</div>
+			</div>
+		</div>
+		
+		<div class="palm-row details-body #{touchableRows}">
+			<div class="palm-row-wrapper details-wrapper">
+				<div id="thumbnails" class="details-screenshot-wrapper">
+					<div id='appScaledImage1' class="details-screenshot" style="" x-mojo-touch-feedback="delayed">
+                                                <div id="appScaledImage5Img" class="app-screenshot" style="display:none"></div>
+                                                <div id="appScaledImage4Img" class="app-screenshot" style="display:none"></div>
+						<div id="appScaledImage3Img" class="app-screenshot" style="display:none"></div>					
+						<div id="appScaledImage2Img" class="app-screenshot" style="display:none"></div>
+						<div id="appScaledImage1Img" class="app-screenshot"></div>
+					</div>                                                        
+
+				</div><div class="downloads-wrapper">    
+					<div class="video-preview" id="videoPreview" x-mojo-touch-feedback="delayed">
+						<div class="video-screencap"></div> 
+						<div class="video-play-icon" ></div>
+					</div>
+					<div id="starRating" class="details-stars">                                                               
+						<img class="details-rating-star" src='images/star-#{formattedStar1}.png' width="20px" height="20px" />
+						<img class="details-rating-star" src='images/star-#{formattedStar2}.png' width="20px" height="20px" />
+						<img class="details-rating-star" src='images/star-#{formattedStar3}.png' width="20px" height="20px" />
+						<img class="details-rating-star" src='images/star-#{formattedStar4}.png' width="20px" height="20px" />
+						<img class="details-rating-star" src='images/star-#{formattedStar5}.png' width="20px" height="20px" />
+					</div>
+					<div class="truncating-text details-rating"><span id="ratingCount">#{pluralRating}</span></div>
+					<div id="seeReviews" class="clear-button clear-fix" x-mojo-touch-feedback="delayed">
+						<div class="clear-button-label">Reseñas</div>
+					</div>
+					<div id="shareButton" class="clear-button" x-mojo-touch-feedback="delayed">
+						<div class="clear-button-label">Enviar</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="description-details">
+
+			<div class="palm-row notreviewed-row">
+				<div class="palm-row-wrapper">
+					<div class="notreviewed-description">HP no ha reseñado esta aplicación.</div>
+				</div>
+			</div>
+
+			<div class="palm-row #{descriptionNoSeparator}">
+				<div class="palm-row-wrapper">
+					<div class="details-description">#{description}</div>
+				</div>
+			</div>
+
+                <table id="worksWithTable" class="palm-list-section-label" style="display: none;">
+                        <tr>
+                                <td class="left"></td>
+                                <td class="label"><span>Funciona con</span></td>
+                                <td class="right"></td>
+                        </tr>
+                </table>
+                <div id="worksWith" class="palm-row" style="display: none;">
+                        <div class="palm-row-wrapper" id="works-with-contacts" style="display: none;">
+                                <div class="icon left works-with-contacts"></div>
+                                <div class="works-with-description">Contactos</div>
+                        </div>
+                        <div class="palm-row-wrapper" id="works-with-calendar" style="display: none;">
+                                <div class="icon left works-with-calendar"></div>
+                                <div class="works-with-description">Calendario</div>
+                        </div>
+                        <div class="palm-row-wrapper" id="works-with-messaging" style="display: none;">
+                                <div class="icon left works-with-messaging"></div>
+                                <div class="works-with-description">Mensajería</div>
+                        </div>
+                        <div class="palm-row-wrapper" id="works-with-email" style="display: none;">
+                                <div class="icon left works-with-email"></div>
+                                <div class="works-with-description">Correo electrónico</div>
+                        </div>
+                        <div class="palm-row-wrapper" id="works-with-search" style="display: none;">
+                                <div class="icon left works-with-search"></div>
+                                <div class="works-with-description">Búsqueda universal</div>
+                        </div>
+                        <div class="palm-row-wrapper" id="works-with-dock" style="display: none;">
+                                <div class="icon left works-with-dock"></div>
+                                <div class="works-with-description">Base de carga Touchstone</div>
+                        </div>
+                </div>
+	          
+			<div class="palm-row" style="display:#{formattedIsRestrictedContent}">
+				<div class="palm-row-wrapper">
+					<div class="icon left restricted-content"></div>
+					<div class="location-services-description" id="restrictedcontent">Para clientes mayores de 18 años.</div>
+				</div>
+			</div>
+			<div class="palm-row last" style="display:#{formattedIslocationbased}">
+				<div class="palm-row-wrapper">
+					<div class="icon left location-services"></div>
+					<div class="location-services-description" id="locationservices">Esta aplicación usa servicios de ubicación.</div>
+				</div>
+			</div>
+		</div>
+		<table class="palm-list-section-label">
+			<tr>
+				<td class="left"></td>
+				<td class="label"><span>Enlaces</span></td>
+				<td class="right"></td>
+			</tr>
+		</table>
+		<div id="linkList" class="palm-list" x-mojo-element="List"></div>
+
+		<div class="palm-row single"></div>
+
+		
+		<div class="progress-pill-container">
+			<div id="progressPill" x-mojo-element="ProgressPill"></div>
+		</div>
+		
+	</div>
+</div>

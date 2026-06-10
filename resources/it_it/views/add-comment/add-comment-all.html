@@ -1,0 +1,70 @@
+	<div id="comment-container">
+		<div class="app-catalog-fade-top" x-mojo-scroll-fade="top"></div>	
+	<!-- <div class="app-catalog-fade-bottom" x-mojo-scroll-fade="bottom"></div> -->
+	
+	<div class="palm-list">
+		
+		<div class="palm-row first">
+			<div class="palm-row-wrapper padded">
+				<div class="icon left details-header-icon">
+					<div id="icon" style='background: none center center no-repeat;float:left;width:44px;height:44px'></div>
+				</div>
+				<div class="details-header-title-and-creator">
+					<div id="title" class="title"></div>
+					<div id="subtitle" class="subtitle truncating-text"></div>
+				</div>				
+			</div>
+		</div>
+	
+		<table class="palm-list-section-label">
+			<tr>
+				<td class="left"></td>
+				<td class="label"><span>Valuta questa applicazione</span></td>
+				<td class="right"></td>
+			</tr>
+		</table>
+		<div class="palm-row add-comment-rating-row no-separator">
+			<div class="palm-row-wrapper">
+				<div id="stars" class="add-comment-big-rating">
+					<img class="details-rating-star" src='images/star-blue-empty.png' width="43px" height="45px" />
+					<img class="details-rating-star" src='images/star-blue-empty.png' width="43px" height="45px" />
+					<img class="details-rating-star" src='images/star-blue-empty.png' width="43px" height="45px" />
+					<img class="details-rating-star" src='images/star-blue-empty.png' width="43px" height="45px" />
+					<img class="details-rating-star" src='images/star-blue-empty.png' width="43px" height="45px" />
+				</div>
+			</div>
+		</div>
+		<table class="palm-list-section-label">
+			<tr>
+				<td class="left"></td>
+				<td class="label"><span>Revisore</span></td>
+				<td class="right"></td>
+			</tr>
+		</table>
+		<div class="palm-row post-anon-row">
+			<div class="palm-row-wrapper">
+				<div id="commentasSelector" x-mojo-element="ListSelector"></div>   
+			</div>
+		</div>
+
+		<!-- 1.x
+		<div class='palm-row last' style="display:none">
+			<div class="palm-row-wrapper textfield-group" x-mojo-focus-highlight="true">
+				<div class="title comment-subject">                          
+					<div x-mojo-element="TextField" id="add_comment_subject">
+					</div>
+				</div>
+			</div>
+		</div> -->
+		
+		<div class="palm-row single">
+			<div class="palm-row-wrapper textfield-group focused">
+				<div class="title">                          
+					<div x-mojo-element="TextField" id="add_comment_body" class="comment-body-textfield">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	</div>

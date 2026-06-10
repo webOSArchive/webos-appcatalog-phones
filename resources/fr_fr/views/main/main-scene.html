@@ -1,0 +1,60 @@
+<div class="palm-scene palm-hasheader palm-light has-search-bar-top app-catalog" >
+	<!--<div class="app-catalog-fade-top" x-mojo-scroll-fade="top"></div>-->
+
+        <div id="master-scrim" class="palm-scrim" style="display:none;"></div>
+
+	<div class="palm-fullscreen" id="spinnerCont" style="display:none;">
+            <div class="palm-fullscreen-cont">
+                <div id="spinner" class="spinner" x-mojo-element="Spinner"></div>
+            </div>
+	</div>
+
+	<div class="app-search-bar">
+            <div id="app-search-bar-inactive" class="app-search-bar-inactive">
+                <img id="app-search-bar-icon" src="images/category-icons/home/search-bar.png" alt="category type" />
+                <span id="app-search-bar-text" class="app-search-bar-text"></span>
+                <div id="app-search-bar-button" class="app-search-bar-button"></div>
+            </div>
+            <div id="app-search-bar-scrim" class="palm-scrim" style="display: none;"></div>
+            <div id="app-search-bar-active" class="app-search-bar-active" style="display: none;" x-mojo-focus-highlight="true">
+                <div id="in-fa-search-text" class="search-text" x-mojo-element="TextField"></div>
+                <div id="searchResultsModified" class="app-search-bar-button-active" x-mojo-touch-feedback="immediate"></div>
+            </div>
+        </div>
+
+        <div id="featured-app-tiles" class="feature-tile-wrapper" style="overflow: hidden; display: none;">
+			<div class="feature-tile-inner-wrapper">
+            	<img class="feature-tile" id="feature_tile__0" src="images/feature-tile-placeholder.png" alt="feature tile" />
+            	<img class="feature-tile" id="feature_tile__1" src="images/feature-tile-placeholder.png" alt="feature tile" />
+			</div>
+        </div>
+        <div id="categorySelectorPlacementAnchor"></div>
+        <div id="categorySelector" class="category-selector truncating-text">Parcourir les catégories</div>
+        <div id="category-selector-fade" style="display:none;"></div>
+        <div id="div-fa-search">
+            <div id="applist-scroller" style="width: 100%;" x-mojo-element="Scroller">
+                <div id="dv-fa-appslist" class="palm-list" x-mojo-element="List"></div>
+                <div class="palm-row single" style="padding-bottom: 3px;">
+                    <!-- This is a spacer.  Leave in place. -->
+                </div>
+            </div>
+
+            <!-- Message div shown when there are are feature tiles -->
+            <div id="dv-fa-appslist-message-default" class="palm-fullscreen-error" style="display:none;">
+                <div class="palm-fullscreen-cont">
+                    <div class="large-icon large-app-catalog"></div>
+                    <div class="fullscreen-message">Applications introuvables.</div>
+                </div>
+            </div>
+
+            <!-- Message div shown when there are no feature tiles -->
+            <div id="dv-fa-appslist-message" class="palm-fullscreen-error" style="display:none;">
+                <div id="palm-fullscreen-cont" class="palm-fullscreen-cont">
+                    <div class="large-icon large-app-catalog"></div>
+                    <div class="fullscreen-message">Applications introuvables.</div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="app-catalog-fade-bottom" x-mojo-scroll-fade="bottom"></div>-->
+</div>

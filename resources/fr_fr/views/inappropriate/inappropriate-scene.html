@@ -1,0 +1,53 @@
+<div class="palm-scene palm-hasheader palm-dark app-catalog inappropriate-scene" >
+	<div class="app-catalog-fade-top" x-mojo-scroll-fade="top"></div>	
+	<!-- <div class="app-catalog-fade-bottom" x-mojo-scroll-fade="bottom"></div> -->
+	
+	<div class="palm-list">
+		
+		<div class="palm-row first">
+			<div class="palm-row-wrapper padded">
+				<div class="icon left details-header-icon">
+					<div id="img-fa-in-appIcon" style='background: url(#{appIcon}) center center no-repeat;float:left;width:44px;height:44px'></div>
+				</div>
+				<div class="details-header-title-and-creator">
+					<div id="txt-fa-in-title" class="title">#{title}</div>
+					<div id="txt-fa-in-subtitle" class="subtitle truncating-text">#{creator}</div>
+				</div>				
+			</div>
+		</div>
+	
+		<div class="palm-row no-separator report-problem-row">
+			<div class="palm-row-wrapper">
+				<div class="info-text">
+					<span>Signalez un problème concernant cette application à HP. Décrivez la marche à suivre pour reproduire le problème.</span>
+				</div>
+			
+			</div>
+		</div>
+		<table class="palm-list-section-label">
+			<tr>
+				<td class="left"></td>
+				<td class="label"><span>Type de problème</span></td>
+				<td class="right"></td>
+			</tr>
+		</table>
+		<div class="palm-row post-anon-row">
+			<div class="palm-row-wrapper">
+				<div id="problemTypeSelector" x-mojo-element="ListSelector"></div>   
+			</div>
+		</div>
+	
+		<div class="palm-row single">
+			<div class="palm-row-wrapper">
+				<div class="textfield-group focused">
+					<div class="title">                          
+						<div id="txt-fa-in-comment" x-mojo-element="TextField" class="inappropriate-textfield">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
