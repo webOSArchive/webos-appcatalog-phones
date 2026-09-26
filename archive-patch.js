@@ -432,13 +432,13 @@
     };
 
     // -----------------------------------------------------------------------
-    // Reset "Downloading…" → "Install" when Preware closes.
+    // Reset "Downloading…" → "Install" when the installer closes.
     //
     // webOS 2.x does not fire any JavaScript callback when a card returns to
     // the foreground (no stageActivate event, no handleLaunch, no stageActivated).
     // Instead we poll applicationManager/running via chained setTimeout.  While
-    // Preware is foreground the JS engine is frozen, so only ONE pending timeout
-    // fires on resume — at that point Preware is already gone from the list.
+    // the installer is foreground the JS engine is frozen, so only ONE pending
+    // timeout fires on resume — at that point the installer is already gone.
     // -----------------------------------------------------------------------
     window._archivePrewareApp = null;
 
@@ -452,21 +452,22 @@
         }
     }
 
-    function _watchForPrewareClose(app) {
+    // handlerId: the app the package was handed to (Preware, Preware 2, ...).
+    function _watchForHandlerClose(app, handlerId) {
         window._archivePrewareApp = app;
-        var prewareSeen = false;
+        var handlerSeen = false;
         var ticks = 0;
 
         // Use setTimeout chaining rather than setInterval or a subscription.
-        // While Preware is foreground, App Catalog's JS engine is frozen — no
-        // subscription callbacks or interval ticks fire.  But the ONE pending
+        // While the installer is foreground, App Catalog's JS engine is frozen —
+        // no subscription callbacks or interval ticks fire.  But the ONE pending
         // setTimeout fires the moment JS unfreezes (card restored), at which
-        // point Preware is already gone from the running list.
+        // point the installer is already gone from the running list.
         function poll() {
             if (!window._archivePrewareApp) { return; }
             ticks++;
             if (ticks > 120) {
-                Mojo.Log.error("ARCHIVE-PATCH preware watch timeout");
+                Mojo.Log.error("ARCHIVE-PATCH installer watch timeout");
                 window._archivePrewareApp = null;
                 return;
             }
@@ -477,19 +478,19 @@
                     var running = response.running || [];
                     var found = false;
                     for (var i = 0; i < running.length; i++) {
-                        if (running[i].id === "org.webosinternals.preware") {
+                        if (running[i].id === handlerId) {
                             found = true;
                             break;
                         }
                     }
                     if (found) {
-                        prewareSeen = true;
+                        handlerSeen = true;
                         setTimeout(poll, 1000);
-                    } else if (prewareSeen) {
-                        Mojo.Log.info("ARCHIVE-PATCH Preware closed — resetting button");
+                    } else if (handlerSeen) {
+                        Mojo.Log.info("ARCHIVE-PATCH " + handlerId + " closed — resetting button");
                         _archiveResetInstallButton();
                     } else {
-                        // Preware not seen yet — keep polling
+                        // Not seen yet — keep polling
                         setTimeout(poll, 1000);
                     }
                 },
@@ -503,7 +504,72 @@
     }
 
     // -----------------------------------------------------------------------
-    // AppInstallService.install — launch Preware instead of dead HP service.
+    // The .ipk handler: hand the package to whichever app is registered for
+    // application/vnd.webos.ipk (Preware, Preware 2, ...), the active one first,
+    // then the alternates, then the original Preware by id, until one opens.
+    // An app can't open an .ipk by target ("Unauthorized call to open an ipk"),
+    // so each is launched by id with {type: "install", file, target}.  A handler
+    // removed since it registered fails to launch, and the next is tried.
+    // From a Preware 2 developer's patch for the tablet catalog, with its LuneOS
+    // route: LunaAppManager passes launches on to SAM and then answers
+    // '"<id>" was not found' even for an app it launched, so ask SAM itself.
+    // -----------------------------------------------------------------------
+    var IPK_MIME = "application/vnd.webos.ipk";
+    var FALLBACK_IPK_HANDLER = "org.webosinternals.preware";
+    var IS_LEGACY_WEBOS = /hpwOS\/|webOS\/[1-3]\./.test(navigator.userAgent);
+
+    function _ipkHandlerCandidates(callback) {
+        var ids = [];
+        function add(id) { if (id && ids.indexOf(id) < 0) { ids.push(id); } }
+        new Mojo.Service.Request("palm://com.palm.applicationManager", {
+            method: "listAllHandlersForMime",
+            parameters: {mime: IPK_MIME},
+            onSuccess: function (r) {
+                var h = r && r.resourceHandlers, i;
+                if (h) {
+                    add(h.activeHandler && h.activeHandler.appId);
+                    for (i = 0; h.alternates && i < h.alternates.length; i++) { add(h.alternates[i].appId); }
+                }
+                add(FALLBACK_IPK_HANDLER);
+                callback(ids);
+            },
+            onFailure: function () { add(FALLBACK_IPK_HANDLER); callback(ids); }
+        });
+    }
+
+    function _launchHandler(id, params, onOk, onFail) {
+        if (IS_LEGACY_WEBOS) {
+            new Mojo.Service.Request("palm://com.palm.applicationManager", {
+                method: "open", parameters: {id: id, params: params}, onSuccess: onOk, onFailure: onFail
+            });
+        } else {
+            new Mojo.Service.Request("luna://com.webos.service.applicationmanager", {
+                method: "launch", parameters: {id: id, params: params}, onSuccess: onOk, onFailure: onFail
+            });
+        }
+    }
+
+    function _openIpkWithHandler(ipkUrl, onSuccess, onFailure) {
+        _ipkHandlerCandidates(function (ids) {
+            var n = 0;
+            function next(last) {
+                if (n >= ids.length) { onFailure(last); return; }
+                var id = ids[n++];
+                _launchHandler(id, {type: "install", file: ipkUrl, target: ipkUrl}, function () {
+                    Mojo.Log.info("ARCHIVE-PATCH package handed to " + id);
+                    onSuccess(id);
+                }, function (r) {
+                    Mojo.Log.info("ARCHIVE-PATCH handler " + id + " not available: " + Object.toJSON(r));
+                    next(r);
+                });
+            }
+            next({returnValue: false, errorText: "No application for .ipk files"});
+        });
+    }
+
+    // -----------------------------------------------------------------------
+    // AppInstallService.install — hand the package to the .ipk handler instead
+    // of HP's service, whose signing servers are gone.
     // -----------------------------------------------------------------------
     Weave.Services.AppInstallService.install = function (app, callback) {
         var ipkUrl = app.packageUrl;
@@ -514,21 +580,12 @@
             return;
         }
 
-        new Mojo.Service.Request("palm://com.palm.applicationManager", {
-            method: "open",
-            parameters: {
-                id:     "org.webosinternals.preware",
-                params: {type: "install", file: ipkUrl}
-            },
-            onSuccess: function () {
-                Mojo.Log.info("ARCHIVE-PATCH Preware launched");
-                callback(true);
-                _watchForPrewareClose(app);
-            },
-            onFailure: function (response) {
-                Mojo.Log.error("ARCHIVE-PATCH Preware launch failed: " + Object.toJSON(response));
-                callback(false, response);
-            }
+        _openIpkWithHandler(ipkUrl, function (handlerId) {
+            callback(true);
+            _watchForHandlerClose(app, handlerId);
+        }, function (response) {
+            Mojo.Log.error("ARCHIVE-PATCH no .ipk handler could be opened: " + Object.toJSON(response));
+            callback(false, response);
         });
     };
 

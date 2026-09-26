@@ -6,7 +6,7 @@
 	"icon": "icon.png",
 	"splashicon": "icon-256x256.png",
 	"splashBackground":"images/splash-screenshot-default.png",  
-	"version": "3.0.23300",
+	"version": "3.1.23301",
 	"vendor": "HP",
 	"noWindow": true,
 	"keywords": ["Store"],
