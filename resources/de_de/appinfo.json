@@ -10,7 +10,7 @@
   "title": "App Catalog",
   "type": "web",
   "universalSearch": {"search": {
-    "displayName": "App Catalog von HP",
+    "displayName": "App Catalog",
     "launchParam": {"common": {
       "params": {
         "search": "#{searchTerms}",
@@ -20,6 +20,6 @@
     }},
     "url": "com.palm.app.findapps"
   }},
-  "vendor": "HP",
-  "version": "2.0.23300"
+  "vendor": "Palm",
+  "version": "3.1.23302"
 }

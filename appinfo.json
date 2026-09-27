@@ -6,14 +6,14 @@
 	"icon": "icon.png",
 	"splashicon": "icon-256x256.png",
 	"splashBackground":"images/splash-screenshot-default.png",  
-	"version": "3.1.23301",
-	"vendor": "HP",
+	"version": "3.1.23302",
+	"vendor": "Palm",
 	"noWindow": true,
 	"keywords": ["Store"],
 	"removable": false,
 	"universalSearch":{
 						"search":{ 
-									"displayName": "HP App Catalog",
+									"displayName": "App Catalog",
 									"url":"com.palm.app.findapps",
 									"launchParam":{"common":{"sceneType":"search","params":{"type":"query","search":"#{searchTerms}"}}}
 								}

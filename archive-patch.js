@@ -7,7 +7,13 @@
 
     Mojo.Log.info("ARCHIVE-PATCH loading");
 
-    var API_BASE = "https://appcatalog.webosarchive.org/WebService/";
+    // Plain HTTP on purpose: stock devices without the community OTA can't complete a
+    // modern TLS handshake, and this client has to work on them.
+    var API_BASE = "http://appcatalog.webosarchive.org/WebService/";
+    var MANIFEST_URL = "http://appcatalog.webosarchive.org/appcatalog-phones.json";
+    // A request the network drops can hang for a long time (Prototype's Ajax has no
+    // timeout): give each one this long, then treat it like a status-0 network error.
+    var REQUEST_TIMEOUT_MS = 15000;
 
     // Updated by getConfig.php call at the bottom.  All URL construction is lazy.
     var _imageBase   = "http://appcatalog.webosarchive.org/AppImages/";
@@ -15,6 +21,18 @@
 
     // Keyed by String(numericId); populated by transformApp (list view).
     var _cache = {};
+
+    // The device's nduid, for download attribution (countAppDownload.php?device=);
+    // looked up once, best-effort. The server resolves the signed-in account from it.
+    var _deviceId = "";
+    try {
+        new Mojo.Service.Request("palm://com.palm.preferences/systemProperties", {
+            method: "Get",
+            parameters: {key: "com.palm.properties.nduid"},
+            onSuccess: function (r) { _deviceId = (r && r["com.palm.properties.nduid"]) || ""; },
+            onFailure: function () {}
+        });
+    } catch (e) {}
 
     // -----------------------------------------------------------------------
     // First-run: accept Terms of Use so the app skips the TOS scene.
@@ -95,10 +113,27 @@
     // On status=0 (SSL session not yet warm after fresh install) we retry
     // once after 1.5 s before surfacing the offline error.
     function archiveGet(url, onSuccess, onFailure, _retried) {
-        new Ajax.Request(url, {
+        var settled = false;
+        function once(fn) {
+            return function () {
+                if (settled) { return; }
+                settled = true;
+                clearTimeout(timer);
+                fn.apply(null, arguments);
+            };
+        }
+        function retryOrGiveUp() {
+            if (!_retried) {
+                setTimeout(function () { archiveGet(url, onSuccess, onFailure, true); }, 1500);
+            } else {
+                Mojo.Log.error("ARCHIVE-PATCH network error (gave up): " + url);
+                onFailure("offline");
+            }
+        }
+        var request = new Ajax.Request(url, {
             method: "GET",
             evalJSON: "force",
-            onSuccess: function (transport) {
+            onSuccess: once(function (transport) {
                 var raw = transport.responseJSON;
                 if (!raw) {
                     try { raw = JSON.parse(transport.responseText); } catch (e) {}
@@ -110,20 +145,37 @@
                                    (transport.responseText || "").substring(0, 200));
                     onFailure("badformat");
                 }
-            },
-            onFailure: function (transport) {
+            }),
+            onFailure: once(function (transport) {
                 Mojo.Log.error("ARCHIVE-PATCH HTTP " + transport.status + " from " + url);
                 onFailure("failure");
-            },
-            on0: function () {
-                if (!_retried) {
-                    setTimeout(function () { archiveGet(url, onSuccess, onFailure, true); }, 1500);
-                } else {
-                    Mojo.Log.error("ARCHIVE-PATCH network error (gave up): " + url);
-                    onFailure("offline");
-                }
-            }
+            }),
+            on0: once(retryOrGiveUp)
         });
+        var timer = setTimeout(function () {
+            if (settled) { return; }
+            settled = true;
+            Mojo.Log.error("ARCHIVE-PATCH request timed out: " + url);
+            try { request.transport.abort(); } catch (e) {}
+            retryOrGiveUp();
+        }, REQUEST_TIMEOUT_MS);
+    }
+
+    // Count a download on the server (the "most downloaded" reports separate device
+    // installs from web by source). Counted when the package is handed to the .ipk
+    // handler by URL - the closest thing to a download this client sees. Fire and
+    // forget: the endpoint returns no body and a miss must never affect the install.
+    function countDownload(app) {
+        var id = _packageIdOf(app) || String(app.publicApplicationId || app.id || "");
+        if (!id) { return; }
+        var url = API_BASE + "countAppDownload.php?appid=" + encodeURIComponent(id) +
+                  "&source=webos-appcatalog-mojo" +
+                  (_deviceId ? "&device=" + encodeURIComponent(_deviceId) : "");
+        try {
+            new Ajax.Request(url, {method: "GET", onComplete: function () {}});
+        } catch (e) {
+            Mojo.Log.error("ARCHIVE-PATCH countAppDownload failed: " + e);
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -142,6 +194,35 @@
     Weave.Services.AccountServices.getGoogleAnalyticsWebPropertyID = function (callback) {
         setTimeout(function () { callback(false); }, 0);
     };
+
+    // -----------------------------------------------------------------------
+    // No Google Analytics. AppAssistant.initialize builds `new AppMetrics(...)`, which
+    // wraps HP's bundled ga.js tracker and, with no property ID, still pushed every launch,
+    // scene and event to Google as account "undefined". Replace the global constructor
+    // with an inert one before AppAssistant is created, and skip setupGoogleAnalytics,
+    // which also polled the connection status for it. (The tablet catalog removed ga.js
+    // from its build outright; here it stays in the compressed bundle but never runs.)
+    // -----------------------------------------------------------------------
+    (function () {
+        var registrationKey = (typeof AppMetrics !== "undefined") ? AppMetrics.registrationKey : "AppMetrics__Registration";
+        var noop = function () {};
+        window.AppMetrics = function () {
+            return {
+                setAccountId:          noop,
+                setInternetConnection: noop,
+                hasInternetConnection: function () { return false; },
+                trackEvent:            noop,
+                trackPageview:         noop,
+                trackLaunch:           noop,
+                trackNewScene:         noop,
+                trackRegistration:     noop
+            };
+        };
+        window.AppMetrics.registrationKey = registrationKey;
+        if (typeof AppAssistant !== "undefined" && AppAssistant.prototype) {
+            AppAssistant.prototype.setupGoogleAnalytics = noop;
+        }
+    }());
 
     // -----------------------------------------------------------------------
     // ApplicationServer overrides (instance-level, shadow prototype methods)
@@ -205,6 +286,19 @@
 
         if (query) {
             url = API_BASE + "getSearchResults.php?app=" + encodeURIComponent(query);
+        } else if (connectors) {
+            // "Find More…" from Exhibition (dockMode), Just Type (universalSearch) or
+            // Accounts (connector/CONTACTS, …): the search scene joins connectorInfo.types
+            // into one comma-separated list and sorts by name. The server matches any of them.
+            var fPage = (safeCount > 0) ? Math.floor(safeStart / safeCount) : 0;
+            url = API_BASE + "getMuseumMaster.php?" +
+                  "device=All" +
+                  "&provides="     + encodeURIComponent(connectors) +
+                  "&page="         + fPage +
+                  "&count="        + safeCount +
+                  "&key="          + makeKey() +
+                  "&hide_missing=true" +
+                  "&sort="         + (sort === "NAME_ASC" ? "alpha" : qidToSort(qid));
         } else {
             var page      = (safeCount > 0) ? Math.floor(safeStart / safeCount) : 0;
             var category  = categoryid || "All";
@@ -567,25 +661,63 @@
         });
     }
 
+    // The package's id, if the catalog knows it: before its details arrive an app is
+    // known by its numeric catalog id only.
+    function _packageIdOf(app) {
+        var id = String(app.publicApplicationId || "");
+        return (id && !/^\d+$/.test(id)) ? id : null;
+    }
+
+    // Open a handler (Preware, Preware 2, …) with the given launch params, trying each
+    // candidate in turn.
+    function _openHandlerWith(params, onSuccess, onFailure) {
+        _ipkHandlerCandidates(function (ids) {
+            var n = 0;
+            function next(last) {
+                if (n >= ids.length) { onFailure(last); return; }
+                var id = ids[n++];
+                _launchHandler(id, params, function () {
+                    Mojo.Log.info("ARCHIVE-PATCH " + id + " opened with " + Object.toJSON(params));
+                    onSuccess(id);
+                }, function (r) { next(r); });
+            }
+            next({returnValue: false, errorText: "No application for .ipk files"});
+        });
+    }
+
     // -----------------------------------------------------------------------
     // AppInstallService.install — hand the package to the .ipk handler instead
-    // of HP's service, whose signing servers are gone.
+    // of HP's service, whose signing servers are gone. Preware gets the most it
+    // can be told, as on the tablet: the package to install; else the package's
+    // page from its feeds ({type: "view", id}); else Preware itself (its own
+    // launch for that is {source: "updateNotification"} - an empty launch opens
+    // nothing). The only failure the catalog shows is Preware not being there.
     // -----------------------------------------------------------------------
     Weave.Services.AppInstallService.install = function (app, callback) {
         var ipkUrl = app.packageUrl;
         Mojo.Log.info("ARCHIVE-PATCH install id=" + app.publicApplicationId);
 
-        if (!ipkUrl) {
-            callback(false, {errorText: "nopackageurl"});
-            return;
-        }
-
-        _openIpkWithHandler(ipkUrl, function (handlerId) {
+        function handedOver(handlerId, withPackage) {
+            if (withPackage) { countDownload(app); }
             callback(true);
             _watchForHandlerClose(app, handlerId);
-        }, function (response) {
-            Mojo.Log.error("ARCHIVE-PATCH no .ipk handler could be opened: " + Object.toJSON(response));
-            callback(false, response);
+        }
+        function viewOrLaunch(why) {
+            var id = _packageIdOf(app);
+            var params = id ? {type: "view", id: id} : {source: "updateNotification"};
+            Mojo.Log.info("ARCHIVE-PATCH handing to Preware without the package (" + why + "): " + Object.toJSON(params));
+            _openHandlerWith(params, handedOver, function (response) {
+                Mojo.Log.error("ARCHIVE-PATCH no .ipk handler could be opened: " + Object.toJSON(response));
+                callback(false, response);
+            });
+        }
+
+        if (!ipkUrl) {
+            viewOrLaunch("no package URL");
+            return;
+        }
+        _openIpkWithHandler(ipkUrl, function (handlerId) { handedOver(handlerId, true); }, function (response) {
+            viewOrLaunch("no handler took the package: " + Object.toJSON(response));
         });
     };
 
@@ -609,6 +741,70 @@
             }
         }
     };
+
+    // -----------------------------------------------------------------------
+    // Self-update: check the static compatibility manifest served at the domain
+    // root, as the tablet catalog does - kept on plain HTTP on purpose, since it
+    // has to work on a freshly-Doctored device before Preware or the community
+    // OTA (and its modern TLS) are installed. Best-effort only: any failure here
+    // just means no update prompt, never a blocked launch. The update goes to
+    // the .ipk handler: the catalog doesn't replace itself while it runs.
+    // -----------------------------------------------------------------------
+    function isNewerVersion(remoteVersion, localVersion) {
+        var r = String(remoteVersion).split(".").map(Number);
+        var l = String(localVersion).split(".").map(Number);
+        for (var i = 0; i < Math.max(r.length, l.length); i++) {
+            var rv = r[i] || 0, lv = l[i] || 0;
+            if (rv !== lv) { return rv > lv; }
+        }
+        return false;
+    }
+
+    function showUpdatePrompt(manifest, attempt) {
+        var scene = null;
+        try {
+            var appController = Mojo.Controller.getAppController();
+            var stage = appController.getActiveStageController() || appController.getStageController("default");
+            scene = stage && stage.activeScene();
+        } catch (e) {}
+        if (!scene) {
+            // The main scene isn't up yet: try again a few times, then let it go.
+            if ((attempt || 0) < 5) { setTimeout(function () { showUpdatePrompt(manifest, (attempt || 0) + 1); }, 2000); }
+            return;
+        }
+        scene.showAlertDialog({
+            title:   "Update Available",
+            message: "App Catalog " + manifest.version + " is available." +
+                     (manifest.versionNote ? "<br><br>" + manifest.versionNote : ""),
+            allowHTMLMessage: true,
+            choices: [
+                {label: "Update Now", value: "update", type: "affirmative"},
+                {label: "Later",      value: "later",  type: "dismiss"}
+            ],
+            onChoose: function (value) {
+                if (value !== "update" || !manifest.filename) { return; }
+                _openIpkWithHandler(manifest.filename, function (handlerId) {
+                    Mojo.Log.info("ARCHIVE-PATCH update handed to " + handlerId);
+                }, function (response) {
+                    Mojo.Log.error("ARCHIVE-PATCH update: no .ipk handler could be opened: " + Object.toJSON(response));
+                });
+            }
+        });
+    }
+
+    function checkForCatalogUpdate() {
+        archiveGet(MANIFEST_URL,
+            function (manifest) {
+                if (manifest && manifest.version && isNewerVersion(manifest.version, Mojo.appInfo.version)) {
+                    showUpdatePrompt(manifest, 0);
+                }
+            },
+            function () {}
+        );
+    }
+
+    // Give the main scene a moment to finish rendering before popping a dialog on it.
+    setTimeout(checkForCatalogUpdate, 3000);
 
     // -----------------------------------------------------------------------
     // Fetch live config for image / package hosts.
